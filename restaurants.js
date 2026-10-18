@@ -1518,11 +1518,11 @@ const RESTAURANTS = [
     ]
   },
   {
-    "name": "Siam Thai",
+    "name": "Siam Thai Eatery",
     "category": "Chinese, Korean & SE Asian",
     "type": "Thai",
-    "neighborhood": "Hyde Park",
-    "price": 1,
+    "neighborhood": "South Loop",
+    "price": 2,
     "ratings": {
       "food": 3.5,
       "value": 4,
@@ -1530,13 +1530,12 @@ const RESTAURANTS = [
       "service": 3.5
     },
     "reserve": {
-      "url": "https://chicagosiamthai.com/",
-      "via": "Phone",
-      "note": "Call 773-324-9296"
+      "url": "https://resy.com/cities/chicago-il/venues/siam-thai-eatery-chicago",
+      "via": "Resy"
     },
-    "lat": 41.7951,
-    "lng": -87.5868,
-    "address": "1639 E 55th St",
+    "lat": 41.86494,
+    "lng": -87.62369,
+    "address": "1329 S Michigan Ave",
     "notes": [
       "Nice to walk in"
     ],
