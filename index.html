@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ch-eat-cago · JP's Chicago restaurant list</title>
+<meta name="description" content="JP's opinionated guide to eating in Chicago.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{
+    --bg:#faf7f2; --panel:#ffffff; --ink:#1f1d1a; --muted:#6f6a62; --line:#e7e1d7;
+    --accent:#c8442f;
+    --c-med:#d98a1f; --c-am:#c8442f; --c-asia:#2f7d6d; --c-des:#a14d8c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+  .app{display:grid;grid-template-columns:400px 1fr;height:100vh}
+  aside{display:flex;flex-direction:column;border-right:1px solid var(--line);background:var(--panel);min-height:0}
+  header{padding:20px 20px 12px}
+  h1{margin:0;font-size:28px;letter-spacing:-.02em;font-family:Georgia,"Times New Roman",serif}
+  h1 span{color:var(--accent)}
+  .sub{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .filters{padding:0 20px 12px;display:grid;gap:8px;border-bottom:1px solid var(--line)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  input[type=search],select{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);min-width:0}
+  input[type=search]{width:100%}
+  select{flex:1}
+  .chip{font:inherit;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer;color:var(--ink);user-select:none}
+  .chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip.sec[aria-pressed=true]{background:var(--c);border-color:var(--c)}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px;vertical-align:0}
+  .chip.sec[aria-pressed=true] .dot{background:#fff}
+  .meta-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+  .link{background:none;border:0;color:var(--accent);cursor:pointer;font:inherit;font-size:13px;padding:0}
+  .list{overflow-y:auto;flex:1;padding:8px 12px 24px}
+  .card{padding:12px;border-radius:10px;border:1px solid transparent;cursor:pointer;margin-bottom:2px}
+  .card:hover,.card.active{background:#fbf6ee;border-color:var(--line)}
+  .card h3{margin:0;font-size:16px;display:flex;align-items:center;gap:6px}
+  .card .info{font-size:12.5px;color:var(--muted);margin:3px 0 6px}
+  .card ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.45}
+  .badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap}
+  .b-fave{background:#fdecc8;color:#8a5a00}
+  .b-skip{background:#f6dcdc;color:#9b2c2c}
+  .b-wishlist{background:#e1ecfb;color:#24589b}
+  .b-closed,.b-maybe-closed{background:#eee;color:#666}
+  .empty{color:var(--muted);text-align:center;padding:40px 10px;font-size:14px}
+  #map{height:100%;width:100%;background:#eae6df}
+  .nomap{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:14px;padding:20px;text-align:center}
+  /* markers */
+  .pin{width:16px;height:16px;border-radius:50%;background:var(--c);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);transition:transform .12s}
+  .pin.fave{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;line-height:1}
+  .pin.closed{opacity:.45;filter:grayscale(1)}
+  .pin.hl{transform:scale(1.5);z-index:1000}
+  .leaflet-tooltip.tip{max-width:300px;white-space:normal;padding:10px 12px;border-radius:10px;border:0;box-shadow:0 6px 24px rgba(0,0,0,.18);font-family:inherit}
+  .tip h4{margin:0 0 2px;font-size:15px}
+  .tip .info{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .tip ul{margin:0;padding-left:16px;font-size:13px;line-height:1.4}
+  .legend{background:#fff;padding:8px 10px;border-radius:8px;font-size:12px;box-shadow:0 1px 6px rgba(0,0,0,.15);line-height:1.7}
+  @media (max-width:800px){
+    .app{grid-template-columns:1fr;grid-template-rows:42vh 1fr;height:100vh}
+    main{order:-1}
+    aside{border-right:0;border-top:1px solid var(--line)}
+    header{padding:14px 16px 8px} h1{font-size:22px}
+    .filters{padding:0 16px 10px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <header>
+      <h1>Ch-<span>eat</span>-cago</h1>
+      <p class="sub">JP's very honest Chicago restaurant list. Hover a pin to read my take.</p>
+    </header>
+    <div class="filters">
+      <input type="search" id="q" placeholder="Search names, dishes, comments…">
+      <div class="row" id="sections"></div>
+      <div class="row">
+        <select id="cuisine" aria-label="Cuisine"></select>
+        <select id="hood" aria-label="Neighborhood"></select>
+      </div>
+      <div class="row" id="prices"></div>
+      <div class="row">
+        <button class="chip" id="faves" aria-pressed="false">★ Faves only</button>
+        <button class="chip" id="hideClosed" aria-pressed="true">Hide closed</button>
+        <select id="sort" aria-label="Sort" style="flex:1">
+          <option value="name">Sort: A–Z</option>
+          <option value="cuisine">Sort: Cuisine</option>
+          <option value="neighborhood">Sort: Neighborhood</option>
+          <option value="priceAsc">Sort: Price ↑</option>
+          <option value="priceDesc">Sort: Price ↓</option>
+        </select>
+      </div>
+      <div class="meta-row"><span id="count"></span><button class="link" id="reset">Reset filters</button></div>
+    </div>
+    <div class="list" id="list"></div>
+  </aside>
+  <main><div id="map"></div></main>
+</div>
+
+<script src="restaurants.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  const SECTIONS = {
+    "Med/Mexican/Etc":        {label:"Med / Mexican / Etc", color:"var(--c-med)", hex:"#d98a1f"},
+    "American/Italian":       {label:"American / Italian",  color:"var(--c-am)",  hex:"#c8442f"},
+    "Japanese/Seafood/Asian": {label:"Asian / Seafood",     color:"var(--c-asia)",hex:"#2f7d6d"},
+    "Dessert/Bar":            {label:"Dessert / Bar",       color:"var(--c-des)", hex:"#a14d8c"}
+  };
+  const BADGE = {fave:"★ Fave", skip:"Skip", wishlist:"On my list", closed:"Closed", "maybe-closed":"May be closed"};
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const $$ = n => "$".repeat(n);
+  const data = RESTAURANTS.map((r,i) => ({...r, id:i, isClosed: r.tags.includes("closed")}));
+
+  const state = {q:"", sections:new Set(), cuisine:"", hood:"", prices:new Set(), faves:false, hideClosed:true, sort:"name"};
+
+  // ---- build controls ----
+  Object.entries(SECTIONS).forEach(([k,s]) => {
+    const b = document.createElement("button");
+    b.className = "chip sec"; b.style.setProperty("--c", s.color);
+    b.setAttribute("aria-pressed","false");
+    b.innerHTML = `<span class="dot"></span>${s.label}`;
+    b.onclick = () => { toggle(state.sections, k); b.setAttribute("aria-pressed", state.sections.has(k)); render(); };
+    $("sections").appendChild(b);
+  });
+  [1,2,3,4].forEach(p => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.textContent = $$(p); b.setAttribute("aria-pressed","false");
+    b.onclick = () => { toggle(state.prices, p); b.setAttribute("aria-pressed", state.prices.has(p)); render(); };
+    $("prices").appendChild(b);
+  });
+  function fillSelect(el, key, allLabel){
+    const counts = {}; data.forEach(r => counts[r[key]] = (counts[r[key]]||0)+1);
+    el.innerHTML = `<option value="">${allLabel}</option>` +
+      Object.keys(counts).sort().map(v => `<option value="${esc(v)}">${esc(v)} (${counts[v]})</option>`).join("");
+  }
+  fillSelect($("cuisine"), "cuisine", "All cuisines");
+  fillSelect($("hood"), "neighborhood", "All neighborhoods");
+  function toggle(set, v){ set.has(v) ? set.delete(v) : set.add(v); }
+
+  $("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
+  $("cuisine").onchange = e => { state.cuisine = e.target.value; render(); };
+  $("hood").onchange = e => { state.hood = e.target.value; render(); };
+  $("sort").onchange = e => { state.sort = e.target.value; render(); };
+  $("faves").onclick = e => { state.faves = !state.faves; e.currentTarget.setAttribute("aria-pressed", state.faves); render(); };
+  $("hideClosed").onclick = e => { state.hideClosed = !state.hideClosed; e.currentTarget.setAttribute("aria-pressed", state.hideClosed); render(); };
+  $("reset").onclick = () => {
+    Object.assign(state, {q:"", cuisine:"", hood:"", faves:false, hideClosed:true, sort:"name"});
+    state.sections.clear(); state.prices.clear();
+    $("q").value=""; $("cuisine").value=""; $("hood").value=""; $("sort").value="name";
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed","false"));
+    $("hideClosed").setAttribute("aria-pressed","true");
+    render(true);
+  };
+
+  // ---- filtering & sorting ----
+  function matches(r){
+    if (state.sections.size && !state.sections.has(r.section)) return false;
+    if (state.cuisine && r.cuisine !== state.cuisine) return false;
+    if (state.hood && r.neighborhood !== state.hood) return false;
+    if (state.prices.size && !state.prices.has(r.price)) return false;
+    if (state.faves && !r.tags.includes("fave")) return false;
+    if (state.hideClosed && r.isClosed) return false;
+    if (state.q){
+      const hay = [r.name, r.cuisine, r.neighborhood, r.address, ...r.notes].join(" ").toLowerCase();
+      if (!hay.includes(state.q)) return false;
+    }
+    return true;
+  }
+  const by = k => (a,b) => a[k].localeCompare(b[k]) || a.name.localeCompare(b.name);
+  const SORTS = {
+    name: (a,b) => a.name.localeCompare(b.name),
+    cuisine: by("cuisine"),
+    neighborhood: by("neighborhood"),
+    priceAsc: (a,b) => a.price-b.price || a.name.localeCompare(b.name),
+    priceDesc: (a,b) => b.price-a.price || a.name.localeCompare(b.name)
+  };
+
+  const infoLine = r => `${esc(r.cuisine)} · ${esc(r.neighborhood)} · ${$$(r.price)}`;
+  const badges = r => r.tags.map(t => BADGE[t] ? `<span class="badge b-${t}">${BADGE[t]}</span>` : "").join(" ");
+  const notesHtml = r => `<ul>${r.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`;
+
+  // ---- map ----
+  let map = null; const markers = {};
+  if (window.L){
+    map = L.map("map", {zoomControl:true}).setView([41.89, -87.64], 12);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains:"abcd", maxZoom:19
+    }).addTo(map);
+    const legend = L.control({position:"bottomright"});
+    legend.onAdd = () => { const d = L.DomUtil.create("div","legend");
+      d.innerHTML = Object.values(SECTIONS).map(s => `<div><span class="dot" style="--c:${s.hex}"></span>${s.label}</div>`).join("") +
+        `<div style="margin-top:2px;color:#6f6a62">★ = JP favorite</div>`; return d; };
+    legend.addTo(map);
+
+    data.forEach(r => {
+      const fave = r.tags.includes("fave");
+      const cls = ["pin", fave?"fave":"", r.isClosed?"closed":""].join(" ");
+      const size = fave ? 22 : 16;
+      const icon = L.divIcon({className:"", iconSize:[size,size], iconAnchor:[size/2,size/2],
+        html:`<div class="${cls}" style="--c:${SECTIONS[r.section].hex}">${fave?"★":""}</div>`});
+      const m = L.marker([r.lat, r.lng], {icon, riseOnHover:true, zIndexOffset: fave?500:0});
+      m.bindTooltip(`<div class="tip"><h4>${esc(r.name)} ${badges(r)}</h4><div class="info">${infoLine(r)}<br>${esc(r.address)}</div>${notesHtml(r)}</div>`,
+        {direction:"top", offset:[0,-size/2], className:"tip", opacity:1});
+      m.on("click", () => { const c = document.querySelector(`.card[data-id="${r.id}"]`); if (c){ c.scrollIntoView({behavior:"smooth", block:"center"}); flash(c);} });
+      m.on("mouseover", () => setActive(r.id, true));
+      m.on("mouseout", () => setActive(r.id, false));
+      markers[r.id] = m;
+    });
+  } else {
+    $("map").innerHTML = '<div class="nomap">Map couldn\'t load (offline?). The list still works.</div>';
+  }
+
+  function setActive(id, on){
+    const c = document.querySelector(`.card[data-id="${id}"]`); if (c) c.classList.toggle("active", on);
+    const el = markers[id] && markers[id].getElement(); if (el && el.firstChild) el.firstChild.classList.toggle("hl", on);
+  }
+  function flash(c){ c.classList.add("active"); setTimeout(()=>c.classList.remove("active"), 1200); }
+
+  // ---- render ----
+  function render(refit){
+    const shown = data.filter(matches).sort(SORTS[state.sort]);
+    const ids = new Set(shown.map(r => r.id));
+    $("count").textContent = `${shown.length} of ${data.length} spots`;
+    $("list").innerHTML = shown.length ? shown.map(r => `
+      <div class="card" data-id="${r.id}">
+        <h3><span class="dot" style="--c:${SECTIONS[r.section].hex}"></span>${esc(r.name)} ${badges(r)}</h3>
+        <div class="info">${infoLine(r)}</div>
+        ${notesHtml(r)}
+      </div>`).join("") : `<div class="empty">Nothing matches — try loosening a filter.</div>`;
+
+    document.querySelectorAll(".card").forEach(c => {
+      const id = +c.dataset.id;
+      c.onmouseenter = () => { setActive(id, true); if (markers[id]) markers[id].openTooltip(); };
+      c.onmouseleave = () => { setActive(id, false); if (markers[id]) markers[id].closeTooltip(); };
+      c.onclick = () => { if (map && markers[id]) map.flyTo(markers[id].getLatLng(), Math.max(map.getZoom(), 15), {duration:.6}); };
+    });
+
+    if (map){
+      Object.entries(markers).forEach(([id,m]) => ids.has(+id) ? m.addTo(map) : m.remove());
+      if (shown.length && (refit || anyFilter())){
+        const b = L.latLngBounds(shown.map(r => [r.lat, r.lng]));
+        map.fitBounds(b.pad(0.15), {maxZoom:15, animate:true});
+      }
+    }
+  }
+  function anyFilter(){ return state.q || state.sections.size || state.cuisine || state.hood || state.prices.size || state.faves; }
+
+  render();
+})();
+</script>
+</body>
+</html>
