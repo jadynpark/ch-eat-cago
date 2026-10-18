@@ -123,7 +123,8 @@
   <main><div id="map"></div><div class="legend" id="legend"></div></main>
 </div>
 
-<script src="restaurants.js"></script>
+<!-- load the list fresh every visit so edits to restaurants.js show up right away -->
+<script>document.write('<script src="restaurants.js?v=' + Date.now() + '"><\/script>');</script>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 <script>
 (function(){
@@ -138,7 +139,7 @@
   ];
   const COLOR = Object.fromEntries(CATEGORIES);
   const CAT_ORDER = Object.fromEntries(CATEGORIES.map(([c],i) => [c,i]));
-  const MAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
+  const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
   const BADGE = {fave:"★ Fave", skip:"Skip", wishlist:"On my list", closed:"Closed", "maybe-closed":"May be closed"};
   const RES_LABEL = {OpenTable:"Reserve on OpenTable", Resy:"Reserve on Resy", Tock:"Book on Tock",
     SevenRooms:"Reserve (SevenRooms)", Website:"Reserve on website", Phone:"Website", "Walk-in":"Website"};
