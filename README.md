@@ -37,6 +37,7 @@ Everything lives in `restaurants.js`. To add a spot, copy an existing entry and 
   "section": "Japanese/Seafood/Asian", // sets the pin color; must match one of the 4 sections
   "lat": 41.9231, "lng": -87.7093, // in Google Maps, right-click the spot and click the numbers to copy them
   "address": "123 N Somewhere Ave",
+  "ratings": {"food": 4.5, "value": 4, "vibe": 5, "service": 4}, // 0–5, halves OK; null = not rated
   "notes": ["First comment", "Second comment"],
   "tags": ["fave"]                 // optional: fave, skip, wishlist, closed, maybe-closed
 }
@@ -46,5 +47,5 @@ Commit the change on GitHub (the pencil icon edits the file in your browser) and
 
 ## Notes
 
-- Map tiles © OpenStreetMap contributors and CARTO (free, no API key needed).
-- Prices and neighborhoods are estimates. Change any you disagree with.
+- Map tiles © OpenStreetMap contributors (free, no API key needed).
+- Prices, neighborhoods, and star ratings started as drafts guessed from my comments. Change any you disagree with.

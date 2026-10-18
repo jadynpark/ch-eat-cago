@@ -1,5 +1,6 @@
 // ✏️ Edit this file to update the map. Each entry = one pin.
 // price: 1-4 ($-$$$$)   tags: fave | skip | wishlist | closed | maybe-closed
+// ratings: 0-5 stars (halves OK, e.g. 4.5) for food, value, vibe, service. Use null to hide a category.
 // Tip: get lat/lng by right-clicking a spot in Google Maps.
 const RESTAURANTS = [
   {
@@ -7,6 +8,12 @@ const RESTAURANTS = [
     "cuisine": "Mediterranean",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 5,
+      "value": 4,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.88736,
     "lng": -87.64792,
@@ -24,6 +31,12 @@ const RESTAURANTS = [
     "cuisine": "Mediterranean",
     "neighborhood": "River North",
     "price": 2,
+    "ratings": {
+      "food": 3.5,
+      "value": 4,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.89094,
     "lng": -87.62959,
@@ -38,6 +51,12 @@ const RESTAURANTS = [
     "cuisine": "Mediterranean",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 4.5,
+      "value": 4,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.88461,
     "lng": -87.64268,
@@ -54,6 +73,12 @@ const RESTAURANTS = [
     "cuisine": "Peruvian",
     "neighborhood": "River North",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.89149,
     "lng": -87.63065,
@@ -68,6 +93,12 @@ const RESTAURANTS = [
     "cuisine": "Mediterranean",
     "neighborhood": "Loop",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3.5,
+      "vibe": 4.5,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.88522,
     "lng": -87.6372,
@@ -82,6 +113,12 @@ const RESTAURANTS = [
     "cuisine": "Polish",
     "neighborhood": "Avondale",
     "price": 2,
+    "ratings": {
+      "food": 4.5,
+      "value": 5,
+      "vibe": 3,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.9367,
     "lng": -87.7076,
@@ -96,6 +133,12 @@ const RESTAURANTS = [
     "cuisine": "Mexican",
     "neighborhood": "Evanston",
     "price": 1,
+    "ratings": {
+      "food": 5,
+      "value": 5,
+      "vibe": 2,
+      "service": 3
+    },
     "section": "Med/Mexican/Etc",
     "lat": 42.0583,
     "lng": -87.684,
@@ -112,6 +155,12 @@ const RESTAURANTS = [
     "cuisine": "French",
     "neighborhood": "Lincoln Square",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "Med/Mexican/Etc",
     "lat": 41.9638,
     "lng": -87.6857,
@@ -126,6 +175,12 @@ const RESTAURANTS = [
     "cuisine": "Pizza",
     "neighborhood": "Lincoln Park",
     "price": 2,
+    "ratings": {
+      "food": 5,
+      "value": 5,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "American/Italian",
     "lat": 41.92195,
     "lng": -87.66415,
@@ -143,6 +198,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 4.5,
+      "value": 4,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.88461,
     "lng": -87.64737,
@@ -159,6 +220,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "Gold Coast",
     "price": 2,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.90541,
     "lng": -87.62867,
@@ -174,6 +241,12 @@ const RESTAURANTS = [
     "cuisine": "Steakhouse",
     "neighborhood": "River North",
     "price": 4,
+    "ratings": {
+      "food": 5,
+      "value": 3.5,
+      "vibe": 4.5,
+      "service": 4.5
+    },
     "section": "American/Italian",
     "lat": 41.88913,
     "lng": -87.63307,
@@ -188,6 +261,12 @@ const RESTAURANTS = [
     "cuisine": "Italian",
     "neighborhood": "River North",
     "price": 2,
+    "ratings": {
+      "food": 3.5,
+      "value": 4,
+      "vibe": 3.5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.88968,
     "lng": -87.62923,
@@ -202,6 +281,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "River North",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 4.5,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.88921,
     "lng": -87.63341,
@@ -220,6 +305,12 @@ const RESTAURANTS = [
     "cuisine": "Italian",
     "neighborhood": "River North",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.88906,
     "lng": -87.63322,
@@ -237,6 +328,12 @@ const RESTAURANTS = [
     "cuisine": "Fine Dining",
     "neighborhood": "Lincoln Park",
     "price": 4,
+    "ratings": {
+      "food": 5,
+      "value": 2,
+      "vibe": 5,
+      "service": 5
+    },
     "section": "American/Italian",
     "lat": 41.92955,
     "lng": -87.637,
@@ -253,6 +350,12 @@ const RESTAURANTS = [
     "cuisine": "Mediterranean",
     "neighborhood": "Streeterville",
     "price": 2,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "American/Italian",
     "lat": 41.8907,
     "lng": -87.6243,
@@ -267,6 +370,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "Streeterville",
     "price": 4,
+    "ratings": {
+      "food": 3.5,
+      "value": 2.5,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.89885,
     "lng": -87.6229,
@@ -284,6 +393,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 3.5,
+      "service": 3.5
+    },
     "section": "American/Italian",
     "lat": 41.88733,
     "lng": -87.6508,
@@ -300,6 +415,12 @@ const RESTAURANTS = [
     "cuisine": "Burgers",
     "neighborhood": "West Loop",
     "price": 2,
+    "ratings": {
+      "food": 4.5,
+      "value": 4,
+      "vibe": 3.5,
+      "service": 3.5
+    },
     "section": "American/Italian",
     "lat": 41.88454,
     "lng": -87.64715,
@@ -314,6 +435,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "Loop",
     "price": 3,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 3.5,
+      "service": 3.5
+    },
     "section": "American/Italian",
     "lat": 41.8814,
     "lng": -87.6246,
@@ -328,6 +455,12 @@ const RESTAURANTS = [
     "cuisine": "Italian",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 4.5,
+      "value": 4,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.88552,
     "lng": -87.65465,
@@ -345,6 +478,12 @@ const RESTAURANTS = [
     "cuisine": "Fine Dining",
     "neighborhood": "West Loop",
     "price": 4,
+    "ratings": {
+      "food": 3.5,
+      "value": 2,
+      "vibe": 4,
+      "service": 5
+    },
     "section": "American/Italian",
     "lat": 41.8851,
     "lng": -87.65924,
@@ -359,6 +498,12 @@ const RESTAURANTS = [
     "cuisine": "Fusion",
     "neighborhood": "Pilsen",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3.5,
+      "vibe": 4.5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.8578,
     "lng": -87.6582,
@@ -373,6 +518,12 @@ const RESTAURANTS = [
     "cuisine": "Italian",
     "neighborhood": "River North",
     "price": 2,
+    "ratings": {
+      "food": 2.5,
+      "value": 3,
+      "vibe": 5,
+      "service": 3.5
+    },
     "section": "American/Italian",
     "lat": 41.8871,
     "lng": -87.6366,
@@ -387,6 +538,12 @@ const RESTAURANTS = [
     "cuisine": "Fine Dining",
     "neighborhood": "West Loop",
     "price": 4,
+    "ratings": {
+      "food": 5,
+      "value": 3,
+      "vibe": 4.5,
+      "service": 5
+    },
     "section": "American/Italian",
     "lat": 41.88642,
     "lng": -87.64379,
@@ -403,6 +560,12 @@ const RESTAURANTS = [
     "cuisine": "Fondue",
     "neighborhood": "Lincoln Park",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.91807,
     "lng": -87.63602,
@@ -417,6 +580,12 @@ const RESTAURANTS = [
     "cuisine": "Steakhouse",
     "neighborhood": "River North",
     "price": 4,
+    "ratings": {
+      "food": 4.5,
+      "value": 3,
+      "vibe": 4,
+      "service": 4.5
+    },
     "section": "American/Italian",
     "lat": 41.88913,
     "lng": -87.6294,
@@ -432,6 +601,12 @@ const RESTAURANTS = [
     "cuisine": "European",
     "neighborhood": "North Center",
     "price": 2,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 3.5,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.9605,
     "lng": -87.6825,
@@ -447,6 +622,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "Lincoln Park",
     "price": 2,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 3.5,
+      "service": 3
+    },
     "section": "American/Italian",
     "lat": 41.91724,
     "lng": -87.64715,
@@ -462,6 +643,12 @@ const RESTAURANTS = [
     "cuisine": "Fine Dining",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 5,
+      "value": 4.5,
+      "vibe": 4,
+      "service": 4.5
+    },
     "section": "American/Italian",
     "lat": 41.88412,
     "lng": -87.64231,
@@ -478,6 +665,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "Lakeview",
     "price": 3,
+    "ratings": {
+      "food": 2.5,
+      "value": 2.5,
+      "vibe": 3.5,
+      "service": 3
+    },
     "section": "American/Italian",
     "lat": 41.9452,
     "lng": -87.66043,
@@ -496,6 +689,12 @@ const RESTAURANTS = [
     "cuisine": "American",
     "neighborhood": "South Loop",
     "price": 3,
+    "ratings": {
+      "food": 4.5,
+      "value": 3.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.853,
     "lng": -87.6237,
@@ -511,6 +710,12 @@ const RESTAURANTS = [
     "cuisine": "Italian",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 5,
+      "value": 4,
+      "vibe": 4.5,
+      "service": 4.5
+    },
     "section": "American/Italian",
     "lat": 41.88733,
     "lng": -87.65034,
@@ -527,6 +732,12 @@ const RESTAURANTS = [
     "cuisine": "Fine Dining",
     "neighborhood": "Lincoln Park",
     "price": 4,
+    "ratings": {
+      "food": 3.5,
+      "value": 3,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "American/Italian",
     "lat": 41.91317,
     "lng": -87.64715,
@@ -541,6 +752,12 @@ const RESTAURANTS = [
     "cuisine": "Steakhouse",
     "neighborhood": "Gold Coast",
     "price": 4,
+    "ratings": {
+      "food": 4.5,
+      "value": 3,
+      "vibe": 4.5,
+      "service": 5
+    },
     "section": "American/Italian",
     "lat": 41.90053,
     "lng": -87.62799,
@@ -555,6 +772,12 @@ const RESTAURANTS = [
     "cuisine": "Fine Dining",
     "neighborhood": "Lincoln Park",
     "price": 4,
+    "ratings": {
+      "food": 4.5,
+      "value": 3,
+      "vibe": 5,
+      "service": 4.5
+    },
     "section": "American/Italian",
     "lat": 41.9216,
     "lng": -87.6375,
@@ -569,6 +792,12 @@ const RESTAURANTS = [
     "cuisine": "Vietnamese",
     "neighborhood": "Gold Coast",
     "price": 3,
+    "ratings": {
+      "food": 3.5,
+      "value": 3.5,
+      "vibe": 4.5,
+      "service": 4
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89999,
     "lng": -87.62642,
@@ -583,6 +812,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "River North",
     "price": 2,
+    "ratings": {
+      "food": 5,
+      "value": 4.5,
+      "vibe": 3.5,
+      "service": 4
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89398,
     "lng": -87.63264,
@@ -600,6 +835,12 @@ const RESTAURANTS = [
     "cuisine": "Ramen",
     "neighborhood": "Wicker Park",
     "price": 1,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 3.5,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.9036,
     "lng": -87.67647,
@@ -614,6 +855,12 @@ const RESTAURANTS = [
     "cuisine": "Asian Fusion",
     "neighborhood": "River North",
     "price": 3,
+    "ratings": {
+      "food": 3.5,
+      "value": 3.5,
+      "vibe": 4,
+      "service": 3.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89094,
     "lng": -87.63046,
@@ -628,6 +875,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "River North",
     "price": 4,
+    "ratings": {
+      "food": 3.5,
+      "value": 3,
+      "vibe": 4,
+      "service": 3.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89015,
     "lng": -87.63022,
@@ -642,6 +895,12 @@ const RESTAURANTS = [
     "cuisine": "Seafood",
     "neighborhood": "River North",
     "price": 4,
+    "ratings": {
+      "food": 4,
+      "value": 3,
+      "vibe": 4.5,
+      "service": 4
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88745,
     "lng": -87.635,
@@ -656,6 +915,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "West Loop",
     "price": 4,
+    "ratings": {
+      "food": 5,
+      "value": 3,
+      "vibe": 4.5,
+      "service": 4.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88552,
     "lng": -87.64763,
@@ -672,6 +937,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "West Town",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89637,
     "lng": -87.67204,
@@ -686,6 +957,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "West Loop",
     "price": 2,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 3.5,
+      "service": 3.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.8806,
     "lng": -87.6508,
@@ -700,6 +977,12 @@ const RESTAURANTS = [
     "cuisine": "Chinese",
     "neighborhood": "Chinatown",
     "price": 2,
+    "ratings": {
+      "food": 4,
+      "value": 4.5,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.85395,
     "lng": -87.6324,
@@ -714,6 +997,12 @@ const RESTAURANTS = [
     "cuisine": "Chinese",
     "neighborhood": "Chinatown",
     "price": 2,
+    "ratings": {
+      "food": 4,
+      "value": 4.5,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.8538,
     "lng": -87.633,
@@ -728,6 +1017,12 @@ const RESTAURANTS = [
     "cuisine": "Hot Pot",
     "neighborhood": "River North",
     "price": 2,
+    "ratings": {
+      "food": 3,
+      "value": 4,
+      "vibe": 3.5,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89637,
     "lng": -87.6278,
@@ -745,6 +1040,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "Chinatown",
     "price": 2,
+    "ratings": {
+      "food": 4.5,
+      "value": 4.5,
+      "vibe": 3.5,
+      "service": 3.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.8546,
     "lng": -87.6317,
@@ -760,6 +1061,12 @@ const RESTAURANTS = [
     "cuisine": "Korean",
     "neighborhood": "North Center",
     "price": 2,
+    "ratings": {
+      "food": 4,
+      "value": 4.5,
+      "vibe": 2.5,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.9585,
     "lng": -87.6815,
@@ -776,6 +1083,12 @@ const RESTAURANTS = [
     "cuisine": "Korean",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88936,
     "lng": -87.64451,
@@ -790,6 +1103,12 @@ const RESTAURANTS = [
     "cuisine": "Korean",
     "neighborhood": "South Loop",
     "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 3.5,
+      "vibe": 2.5,
+      "service": 3.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.8685,
     "lng": -87.626,
@@ -805,6 +1124,12 @@ const RESTAURANTS = [
     "cuisine": "Chinese",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 4.5,
+      "value": 3.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88733,
     "lng": -87.64853,
@@ -819,6 +1144,12 @@ const RESTAURANTS = [
     "cuisine": "Chinese",
     "neighborhood": "Uptown",
     "price": 2,
+    "ratings": {
+      "food": 4.5,
+      "value": 4.5,
+      "vibe": 2.5,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.974,
     "lng": -87.6597,
@@ -833,6 +1164,12 @@ const RESTAURANTS = [
     "cuisine": "Korean",
     "neighborhood": "West Town",
     "price": 4,
+    "ratings": {
+      "food": 4.5,
+      "value": 3,
+      "vibe": 4.5,
+      "service": 4.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.89637,
     "lng": -87.66311,
@@ -850,6 +1187,12 @@ const RESTAURANTS = [
     "cuisine": "Chinese",
     "neighborhood": "Lakeview",
     "price": 2,
+    "ratings": {
+      "food": 3.5,
+      "value": 3.5,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.9423,
     "lng": -87.6447,
@@ -864,6 +1207,12 @@ const RESTAURANTS = [
     "cuisine": "Ramen",
     "neighborhood": "River North",
     "price": 2,
+    "ratings": {
+      "food": 2.5,
+      "value": 3,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88968,
     "lng": -87.62795,
@@ -878,6 +1227,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "Lakeshore East",
     "price": 4,
+    "ratings": {
+      "food": 4,
+      "value": 3,
+      "vibe": 4.5,
+      "service": 4.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.8875,
     "lng": -87.6185,
@@ -892,6 +1247,12 @@ const RESTAURANTS = [
     "cuisine": "Japanese",
     "neighborhood": "West Loop",
     "price": 4,
+    "ratings": {
+      "food": 5,
+      "value": 3.5,
+      "vibe": 4.5,
+      "service": 5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88552,
     "lng": -87.64548,
@@ -908,6 +1269,12 @@ const RESTAURANTS = [
     "cuisine": "Thai",
     "neighborhood": "Hyde Park",
     "price": 1,
+    "ratings": {
+      "food": 3.5,
+      "value": 4,
+      "vibe": 3,
+      "service": 3.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.7951,
     "lng": -87.5868,
@@ -922,6 +1289,7 @@ const RESTAURANTS = [
     "cuisine": "Thai",
     "neighborhood": "Lakeview",
     "price": 2,
+    "ratings": null,
     "section": "Japanese/Seafood/Asian",
     "lat": 41.9343,
     "lng": -87.6592,
@@ -938,6 +1306,12 @@ const RESTAURANTS = [
     "cuisine": "Bar",
     "neighborhood": "West Loop",
     "price": 3,
+    "ratings": {
+      "food": 5,
+      "value": 3.5,
+      "vibe": 4.5,
+      "service": 4.5
+    },
     "section": "Japanese/Seafood/Asian",
     "lat": 41.88552,
     "lng": -87.64304,
@@ -954,6 +1328,12 @@ const RESTAURANTS = [
     "cuisine": "Dessert",
     "neighborhood": "West Loop",
     "price": 1,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 3,
+      "service": 3.5
+    },
     "section": "Dessert/Bar",
     "lat": 41.88469,
     "lng": -87.64792,
@@ -968,6 +1348,12 @@ const RESTAURANTS = [
     "cuisine": "Dessert",
     "neighborhood": "River North",
     "price": 1,
+    "ratings": {
+      "food": 5,
+      "value": 4,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "Dessert/Bar",
     "lat": 41.8876,
     "lng": -87.633,
@@ -985,6 +1371,12 @@ const RESTAURANTS = [
     "cuisine": "Dessert",
     "neighborhood": "River North",
     "price": 1,
+    "ratings": {
+      "food": 5,
+      "value": 4.5,
+      "vibe": 3,
+      "service": 3.5
+    },
     "section": "Dessert/Bar",
     "lat": 41.88968,
     "lng": -87.62944,
@@ -1002,6 +1394,12 @@ const RESTAURANTS = [
     "cuisine": "Bakery/Cafe",
     "neighborhood": "Loop",
     "price": 2,
+    "ratings": {
+      "food": 4.5,
+      "value": 3.5,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "Dessert/Bar",
     "lat": 41.8862,
     "lng": -87.6245,
@@ -1017,6 +1415,12 @@ const RESTAURANTS = [
     "cuisine": "Bar",
     "neighborhood": "West Loop",
     "price": 4,
+    "ratings": {
+      "food": 4.5,
+      "value": 3,
+      "vibe": 5,
+      "service": 4.5
+    },
     "section": "Dessert/Bar",
     "lat": 41.88733,
     "lng": -87.6509,
@@ -1031,6 +1435,12 @@ const RESTAURANTS = [
     "cuisine": "Dessert",
     "neighborhood": "Bucktown",
     "price": 1,
+    "ratings": {
+      "food": 4.5,
+      "value": 5,
+      "vibe": 5,
+      "service": 4
+    },
     "section": "Dessert/Bar",
     "lat": 41.91735,
     "lng": -87.68585,
@@ -1048,6 +1458,12 @@ const RESTAURANTS = [
     "cuisine": "Dessert",
     "neighborhood": "Lincoln Park",
     "price": 1,
+    "ratings": {
+      "food": 3,
+      "value": 3,
+      "vibe": 3,
+      "service": 3
+    },
     "section": "Dessert/Bar",
     "lat": 41.929,
     "lng": -87.6433,
@@ -1062,6 +1478,12 @@ const RESTAURANTS = [
     "cuisine": "Afternoon Tea",
     "neighborhood": "River North",
     "price": 4,
+    "ratings": {
+      "food": 3,
+      "value": 1.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Dessert/Bar",
     "lat": 41.8882,
     "lng": -87.6268,
@@ -1078,6 +1500,12 @@ const RESTAURANTS = [
     "cuisine": "Afternoon Tea",
     "neighborhood": "Gold Coast",
     "price": 4,
+    "ratings": {
+      "food": 3,
+      "value": 1.5,
+      "vibe": 4,
+      "service": 4
+    },
     "section": "Dessert/Bar",
     "lat": 41.9001,
     "lng": -87.6237,

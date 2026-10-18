@@ -56,6 +56,17 @@
   .tip .info{font-size:12px;color:var(--muted);margin-bottom:6px}
   .tip ul{margin:0;padding-left:16px;font-size:13px;line-height:1.4}
   .legend{background:#fff;padding:8px 10px;border-radius:8px;font-size:12px;box-shadow:0 1px 6px rgba(0,0,0,.15);line-height:1.7}
+  /* star ratings */
+  .ratings{display:grid;grid-template-columns:auto auto;gap:1px 14px;font-size:12px;color:var(--muted);margin:2px 0 8px;width:max-content}
+  .ratings .r{display:flex;align-items:center;gap:6px}
+  .ratings .lbl{width:58px}
+  .stars{position:relative;display:inline-block;font-size:13px;line-height:1;letter-spacing:1px;color:#ddd5c8}
+  .stars::before{content:"★★★★★"}
+  .stars i{position:absolute;inset:0 auto 0 0;overflow:hidden;white-space:nowrap;color:#e0a526;font-style:normal}
+  .stars i::before{content:"★★★★★"}
+  .ratings .na{font-size:11px;font-style:italic}
+  .overall{font-size:12px;font-weight:600;color:#8a5a00;white-space:nowrap;margin-left:auto}
+  .leaflet-tile-pane{filter:saturate(.7) contrast(.95) brightness(1.04)}
   @media (max-width:800px){
     .app{grid-template-columns:1fr;grid-template-rows:42vh 1fr;height:100vh}
     main{order:-1}
@@ -85,6 +96,11 @@
         <button class="chip" id="hideClosed" aria-pressed="true">Hide closed</button>
         <select id="sort" aria-label="Sort" style="flex:1">
           <option value="name">Sort: A–Z</option>
+          <option value="r_overall">Sort: ★ Overall</option>
+          <option value="r_food">Sort: ★ Food</option>
+          <option value="r_value">Sort: ★ Value</option>
+          <option value="r_vibe">Sort: ★ Vibe</option>
+          <option value="r_service">Sort: ★ Service</option>
           <option value="cuisine">Sort: Cuisine</option>
           <option value="neighborhood">Sort: Neighborhood</option>
           <option value="priceAsc">Sort: Price ↑</option>
@@ -112,7 +128,20 @@
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const $$ = n => "$".repeat(n);
-  const data = RESTAURANTS.map((r,i) => ({...r, id:i, isClosed: r.tags.includes("closed")}));
+  const CATS = [["food","Food"],["value","Value"],["vibe","Vibe"],["service","Service"]];
+  const overallOf = r => {
+    const v = CATS.map(([k]) => r.ratings && r.ratings[k]).filter(x => typeof x === "number");
+    return v.length ? Math.round(v.reduce((a,b)=>a+b,0) / v.length * 10) / 10 : null;
+  };
+  const data = RESTAURANTS.map((r,i) => ({...r, id:i, isClosed: r.tags.includes("closed"), overall: overallOf(r)}));
+  const ratingOf = (r,k) => k === "overall" ? r.overall : (r.ratings ? r.ratings[k] : null);
+  const stars = v => `<span class="stars" role="img" aria-label="${v} out of 5"><i style="width:${v/5*100}%"></i></span>`;
+  const ratingsHtml = r => {
+    if (!r.ratings) return `<div class="ratings"><span class="na">Not rated yet</span></div>`;
+    return `<div class="ratings">${CATS.filter(([k]) => typeof r.ratings[k] === "number")
+      .map(([k,l]) => `<span class="r"><span class="lbl">${l}</span>${stars(r.ratings[k])}</span>`).join("")}</div>`;
+  };
+  const overallHtml = r => r.overall == null ? "" : `<span class="overall">★ ${r.overall.toFixed(1)}</span>`;
 
   const state = {q:"", sections:new Set(), cuisine:"", hood:"", prices:new Set(), faves:false, hideClosed:true, sort:"name"};
 
@@ -177,6 +206,14 @@
     priceAsc: (a,b) => a.price-b.price || a.name.localeCompare(b.name),
     priceDesc: (a,b) => b.price-a.price || a.name.localeCompare(b.name)
   };
+  ["overall","food","value","vibe","service"].forEach(k => {
+    SORTS["r_"+k] = (a,b) => {
+      const x = ratingOf(a,k), y = ratingOf(b,k);
+      if (x == null && y == null) return a.name.localeCompare(b.name);
+      if (x == null) return 1; if (y == null) return -1;
+      return y - x || (b.overall||0) - (a.overall||0) || a.name.localeCompare(b.name);
+    };
+  });
 
   const infoLine = r => `${esc(r.cuisine)} · ${esc(r.neighborhood)} · ${$$(r.price)}`;
   const badges = r => r.tags.map(t => BADGE[t] ? `<span class="badge b-${t}">${BADGE[t]}</span>` : "").join(" ");
@@ -186,9 +223,9 @@
   let map = null; const markers = {};
   if (window.L){
     map = L.map("map", {zoomControl:true}).setView([41.89, -87.64], 12);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains:"abcd", maxZoom:19
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom:19
     }).addTo(map);
     const legend = L.control({position:"bottomright"});
     legend.onAdd = () => { const d = L.DomUtil.create("div","legend");
@@ -203,7 +240,7 @@
       const icon = L.divIcon({className:"", iconSize:[size,size], iconAnchor:[size/2,size/2],
         html:`<div class="${cls}" style="--c:${SECTIONS[r.section].hex}">${fave?"★":""}</div>`});
       const m = L.marker([r.lat, r.lng], {icon, riseOnHover:true, zIndexOffset: fave?500:0});
-      m.bindTooltip(`<div class="tip"><h4>${esc(r.name)} ${badges(r)}</h4><div class="info">${infoLine(r)}<br>${esc(r.address)}</div>${notesHtml(r)}</div>`,
+      m.bindTooltip(`<div class="tip"><h4>${esc(r.name)} ${badges(r)}</h4><div class="info">${infoLine(r)}${r.overall!=null?` · ★ ${r.overall.toFixed(1)}`:""}<br>${esc(r.address)}</div>${ratingsHtml(r)}${notesHtml(r)}</div>`,
         {direction:"top", offset:[0,-size/2], className:"tip", opacity:1});
       m.on("click", () => { const c = document.querySelector(`.card[data-id="${r.id}"]`); if (c){ c.scrollIntoView({behavior:"smooth", block:"center"}); flash(c);} });
       m.on("mouseover", () => setActive(r.id, true));
@@ -227,8 +264,9 @@
     $("count").textContent = `${shown.length} of ${data.length} spots`;
     $("list").innerHTML = shown.length ? shown.map(r => `
       <div class="card" data-id="${r.id}">
-        <h3><span class="dot" style="--c:${SECTIONS[r.section].hex}"></span>${esc(r.name)} ${badges(r)}</h3>
+        <h3><span class="dot" style="--c:${SECTIONS[r.section].hex}"></span>${esc(r.name)} ${badges(r)}${overallHtml(r)}</h3>
         <div class="info">${infoLine(r)}</div>
+        ${ratingsHtml(r)}
         ${notesHtml(r)}
       </div>`).join("") : `<div class="empty">Nothing matches — try loosening a filter.</div>`;
 
