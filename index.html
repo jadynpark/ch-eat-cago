@@ -5,74 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ch-eat-cago · JP's Chicago restaurant list</title>
 <meta name="description" content="JP's opinionated guide to eating in Chicago.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <style>
   :root{
-    --bg:#faf7f2; --panel:#ffffff; --ink:#1f1d1a; --muted:#6f6a62; --line:#e7e1d7;
-    --accent:#c8442f;
-    --c-med:#d98a1f; --c-am:#c8442f; --c-asia:#2f7d6d; --c-des:#a14d8c;
+    --bg:#faf7f2; --panel:#ffffff; --ink:#1f1d1a; --muted:#6f6a62; --line:#e7e1d7; --accent:#c8442f;
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
-  .app{display:grid;grid-template-columns:400px 1fr;height:100vh}
+  .app{display:grid;grid-template-columns:410px 1fr;height:100vh}
   aside{display:flex;flex-direction:column;border-right:1px solid var(--line);background:var(--panel);min-height:0}
   header{padding:20px 20px 12px}
   h1{margin:0;font-size:28px;letter-spacing:-.02em;font-family:Georgia,"Times New Roman",serif}
   h1 span{color:var(--accent)}
   .sub{margin:4px 0 0;color:var(--muted);font-size:13px}
   .filters{padding:0 20px 12px;display:grid;gap:8px;border-bottom:1px solid var(--line)}
-  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
   input[type=search],select{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);min-width:0}
   input[type=search]{width:100%}
   select{flex:1}
   .chip{font:inherit;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer;color:var(--ink);user-select:none}
   .chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .chip.sec[aria-pressed=true]{background:var(--c);border-color:var(--c)}
-  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px;vertical-align:0}
-  .chip.sec[aria-pressed=true] .dot{background:#fff}
+  .chip.cat[aria-pressed=true]{background:var(--c);border-color:var(--c)}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px;vertical-align:0;flex:none}
+  .chip.cat[aria-pressed=true] .dot{background:#fff}
   .meta-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
   .link{background:none;border:0;color:var(--accent);cursor:pointer;font:inherit;font-size:13px;padding:0}
   .list{overflow-y:auto;flex:1;padding:8px 12px 24px}
   .card{padding:12px;border-radius:10px;border:1px solid transparent;cursor:pointer;margin-bottom:2px}
   .card:hover,.card.active{background:#fbf6ee;border-color:var(--line)}
-  .card h3{margin:0;font-size:16px;display:flex;align-items:center;gap:6px}
-  .card .info{font-size:12.5px;color:var(--muted);margin:3px 0 6px}
-  .card ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.45}
+  .card h3{margin:0;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .info{font-size:12.5px;color:var(--muted);margin:3px 0 6px}
+  .card ul{margin:0 0 8px;padding-left:18px;font-size:13.5px;line-height:1.45}
   .badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap}
   .b-fave{background:#fdecc8;color:#8a5a00}
   .b-skip{background:#f6dcdc;color:#9b2c2c}
   .b-wishlist{background:#e1ecfb;color:#24589b}
   .b-closed,.b-maybe-closed{background:#eee;color:#666}
   .empty{color:var(--muted);text-align:center;padding:40px 10px;font-size:14px}
-  #map{height:100%;width:100%;background:#eae6df}
-  .nomap{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:14px;padding:20px;text-align:center}
-  /* markers */
-  .pin{width:16px;height:16px;border-radius:50%;background:var(--c);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);transition:transform .12s}
-  .pin.fave{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;line-height:1}
-  .pin.closed{opacity:.45;filter:grayscale(1)}
-  .pin.hl{transform:scale(1.5);z-index:1000}
-  .leaflet-tooltip.tip{max-width:300px;white-space:normal;padding:10px 12px;border-radius:10px;border:0;box-shadow:0 6px 24px rgba(0,0,0,.18);font-family:inherit}
-  .tip h4{margin:0 0 2px;font-size:15px}
-  .tip .info{font-size:12px;color:var(--muted);margin-bottom:6px}
-  .tip ul{margin:0;padding-left:16px;font-size:13px;line-height:1.4}
-  .legend{background:#fff;padding:8px 10px;border-radius:8px;font-size:12px;box-shadow:0 1px 6px rgba(0,0,0,.15);line-height:1.7}
-  /* star ratings */
+  /* reserve */
+  .res{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;text-decoration:none;padding:5px 11px;border-radius:8px;background:var(--ink);color:#fff;border:1px solid var(--ink);white-space:nowrap}
+  .btn:hover{background:#000}
+  .btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{border-color:var(--ink)}
+  .res .rnote{font-size:12px;color:var(--muted)}
+  /* stars */
   .ratings{display:grid;grid-template-columns:auto auto;gap:1px 14px;font-size:12px;color:var(--muted);margin:2px 0 8px;width:max-content}
   .ratings .r{display:flex;align-items:center;gap:6px}
-  .ratings .lbl{width:58px}
+  .ratings .lbl{width:52px}
   .stars{position:relative;display:inline-block;font-size:13px;line-height:1;letter-spacing:1px;color:#ddd5c8}
   .stars::before{content:"★★★★★"}
   .stars i{position:absolute;inset:0 auto 0 0;overflow:hidden;white-space:nowrap;color:#e0a526;font-style:normal}
   .stars i::before{content:"★★★★★"}
   .ratings .na{font-size:11px;font-style:italic}
   .overall{font-size:12px;font-weight:600;color:#8a5a00;white-space:nowrap;margin-left:auto}
-  .leaflet-tile-pane{filter:saturate(.7) contrast(.95) brightness(1.04)}
+  /* map */
+  main{position:relative;min-height:0}
+  #map{position:absolute;inset:0;background:#f2efe9}
+  .nomap{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:14px;padding:20px;text-align:center}
+  .pin-wrap{cursor:pointer}
+  .pin{width:16px;height:16px;border-radius:50%;background:var(--c);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);transition:transform .12s ease}
+  .pin.fave{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;line-height:1}
+  .pin.closed{opacity:.45;filter:grayscale(1)}
+  .pin.hl,.pin-wrap:hover .pin{transform:scale(1.45)}
+  .maplibregl-popup.tip .maplibregl-popup-content{padding:12px 14px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.18);font-family:inherit}
+  .tip h4{margin:0 0 2px;font-size:15px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .tip .info{font-size:12px;margin-bottom:6px}
+  .tip ul{margin:0 0 8px;padding-left:16px;font-size:13px;line-height:1.4}
+  .legend{position:absolute;right:10px;bottom:28px;background:rgba(255,255,255,.95);padding:8px 10px;border-radius:8px;font-size:12px;box-shadow:0 1px 6px rgba(0,0,0,.15);line-height:1.7;z-index:2}
   @media (max-width:800px){
-    .app{grid-template-columns:1fr;grid-template-rows:42vh 1fr;height:100vh}
+    .app{grid-template-columns:1fr;grid-template-rows:44vh 1fr;height:100dvh}
     main{order:-1}
     aside{border-right:0;border-top:1px solid var(--line)}
     header{padding:14px 16px 8px} h1{font-size:22px}
     .filters{padding:0 16px 10px}
+    .legend{display:none}
   }
 </style>
 </head>
@@ -85,9 +93,8 @@
     </header>
     <div class="filters">
       <input type="search" id="q" placeholder="Search names, dishes, comments…">
-      <div class="row" id="sections"></div>
+      <div class="row" id="cats"></div>
       <div class="row">
-        <select id="cuisine" aria-label="Cuisine"></select>
         <select id="hood" aria-label="Neighborhood"></select>
       </div>
       <div class="row" id="prices"></div>
@@ -111,151 +118,183 @@
     </div>
     <div class="list" id="list"></div>
   </aside>
-  <main><div id="map"></div></main>
+  <main><div id="map"></div><div class="legend" id="legend"></div></main>
 </div>
 
 <script src="restaurants.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 <script>
 (function(){
-  const SECTIONS = {
-    "Med/Mexican/Etc":        {label:"Med / Mexican / Etc", color:"var(--c-med)", hex:"#d98a1f"},
-    "American/Italian":       {label:"American / Italian",  color:"var(--c-am)",  hex:"#c8442f"},
-    "Japanese/Seafood/Asian": {label:"Asian / Seafood",     color:"var(--c-asia)",hex:"#2f7d6d"},
-    "Dessert/Bar":            {label:"Dessert / Bar",       color:"var(--c-des)", hex:"#a14d8c"}
-  };
+  // ---- config ----
+  const CATEGORIES = [
+    ["American",                   "#c8442f"],
+    ["Italian & European",         "#3a6bb0"],
+    ["Mediterranean & Latin",      "#de8a12"],
+    ["Japanese",                   "#2f7d6d"],
+    ["Chinese, Korean & SE Asian", "#7f9a22"],
+    ["Dessert & Bars",             "#a14d8c"],
+  ];
+  const COLOR = Object.fromEntries(CATEGORIES);
+  const CAT_ORDER = Object.fromEntries(CATEGORIES.map(([c],i) => [c,i]));
+  const MAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
   const BADGE = {fave:"★ Fave", skip:"Skip", wishlist:"On my list", closed:"Closed", "maybe-closed":"May be closed"};
+  const RES_LABEL = {OpenTable:"Reserve on OpenTable", Resy:"Reserve on Resy", Tock:"Book on Tock",
+    SevenRooms:"Reserve (SevenRooms)", Website:"Reserve on website", Phone:"Website", "Walk-in":"Website"};
+  const RATING_CATS = [["food","Food"],["value","Value"],["vibe","Vibe"],["service","Service"]];
+
+  // ---- helpers ----
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const $$ = n => "$".repeat(n);
-  const CATS = [["food","Food"],["value","Value"],["vibe","Vibe"],["service","Service"]];
+  const colorOf = r => COLOR[r.category] || "#888";
   const overallOf = r => {
-    const v = CATS.map(([k]) => r.ratings && r.ratings[k]).filter(x => typeof x === "number");
+    const v = RATING_CATS.map(([k]) => r.ratings && r.ratings[k]).filter(x => typeof x === "number");
     return v.length ? Math.round(v.reduce((a,b)=>a+b,0) / v.length * 10) / 10 : null;
   };
-  const data = RESTAURANTS.map((r,i) => ({...r, id:i, isClosed: r.tags.includes("closed"), overall: overallOf(r)}));
+  const data = RESTAURANTS.map((r,i) => ({...r, id:i, isClosed:r.tags.includes("closed"), isFave:r.tags.includes("fave"), overall:overallOf(r)}));
   const ratingOf = (r,k) => k === "overall" ? r.overall : (r.ratings ? r.ratings[k] : null);
+
   const stars = v => `<span class="stars" role="img" aria-label="${v} out of 5"><i style="width:${v/5*100}%"></i></span>`;
-  const ratingsHtml = r => {
-    if (!r.ratings) return `<div class="ratings"><span class="na">Not rated yet</span></div>`;
-    return `<div class="ratings">${CATS.filter(([k]) => typeof r.ratings[k] === "number")
+  const ratingsHtml = r => !r.ratings ? `<div class="ratings"><span class="na">Not rated yet</span></div>` :
+    `<div class="ratings">${RATING_CATS.filter(([k]) => typeof r.ratings[k] === "number")
       .map(([k,l]) => `<span class="r"><span class="lbl">${l}</span>${stars(r.ratings[k])}</span>`).join("")}</div>`;
-  };
   const overallHtml = r => r.overall == null ? "" : `<span class="overall">★ ${r.overall.toFixed(1)}</span>`;
+  const infoLine = r => `${esc(r.type)} · ${esc(r.neighborhood)} · ${$$(r.price)}`;
+  const badges = r => r.tags.map(t => BADGE[t] ? `<span class="badge b-${t}">${BADGE[t]}</span>` : "").join(" ");
+  const notesHtml = r => `<ul>${r.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`;
+  const reserveHtml = r => {
+    const x = r.reserve; if (!x || !x.url) return "";
+    const ghost = x.via === "Walk-in" || x.via === "Phone";
+    const note = x.note || (x.via === "Walk-in" ? "Walk-in only" : "");
+    return `<div class="res"><a class="btn${ghost?" ghost":""}" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(RES_LABEL[x.via] || "Website")} ↗</a>${note?`<span class="rnote">${esc(note)}</span>`:""}</div>`;
+  };
+  const tipHtml = r => `<div class="tip-body"><h4>${esc(r.name)} ${badges(r)}</h4>
+    <div class="info">${infoLine(r)}${r.overall!=null?` · ★ ${r.overall.toFixed(1)}`:""}<br>${esc(r.address)}</div>
+    ${ratingsHtml(r)}${notesHtml(r)}${reserveHtml(r)}</div>`;
 
-  const state = {q:"", sections:new Set(), cuisine:"", hood:"", prices:new Set(), faves:false, hideClosed:true, sort:"name"};
+  // ---- state & controls ----
+  const state = {q:"", cats:new Set(), hood:"", prices:new Set(), faves:false, hideClosed:true, sort:"name"};
+  const toggle = (set, v) => set.has(v) ? set.delete(v) : set.add(v);
 
-  // ---- build controls ----
-  Object.entries(SECTIONS).forEach(([k,s]) => {
+  CATEGORIES.forEach(([c, hex]) => {
+    const n = data.filter(r => r.category === c).length;
     const b = document.createElement("button");
-    b.className = "chip sec"; b.style.setProperty("--c", s.color);
-    b.setAttribute("aria-pressed","false");
-    b.innerHTML = `<span class="dot"></span>${s.label}`;
-    b.onclick = () => { toggle(state.sections, k); b.setAttribute("aria-pressed", state.sections.has(k)); render(); };
-    $("sections").appendChild(b);
+    b.className = "chip cat"; b.style.setProperty("--c", hex); b.setAttribute("aria-pressed","false");
+    b.innerHTML = `<span class="dot"></span>${esc(c)} <span style="opacity:.6">${n}</span>`;
+    b.onclick = () => { toggle(state.cats, c); b.setAttribute("aria-pressed", state.cats.has(c)); render(true); };
+    $("cats").appendChild(b);
   });
   [1,2,3,4].forEach(p => {
     const b = document.createElement("button");
     b.className = "chip"; b.textContent = $$(p); b.setAttribute("aria-pressed","false");
-    b.onclick = () => { toggle(state.prices, p); b.setAttribute("aria-pressed", state.prices.has(p)); render(); };
+    b.onclick = () => { toggle(state.prices, p); b.setAttribute("aria-pressed", state.prices.has(p)); render(true); };
     $("prices").appendChild(b);
   });
-  function fillSelect(el, key, allLabel){
-    const counts = {}; data.forEach(r => counts[r[key]] = (counts[r[key]]||0)+1);
-    el.innerHTML = `<option value="">${allLabel}</option>` +
+  (function fillHoods(){
+    const counts = {}; data.forEach(r => counts[r.neighborhood] = (counts[r.neighborhood]||0)+1);
+    $("hood").innerHTML = `<option value="">All neighborhoods</option>` +
       Object.keys(counts).sort().map(v => `<option value="${esc(v)}">${esc(v)} (${counts[v]})</option>`).join("");
-  }
-  fillSelect($("cuisine"), "cuisine", "All cuisines");
-  fillSelect($("hood"), "neighborhood", "All neighborhoods");
-  function toggle(set, v){ set.has(v) ? set.delete(v) : set.add(v); }
+  })();
+  $("legend").innerHTML = CATEGORIES.map(([c,hex]) => `<div><span class="dot" style="--c:${hex}"></span>${esc(c)}</div>`).join("") +
+    `<div style="margin-top:2px;color:#6f6a62">★ = JP favorite</div>`;
 
-  $("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
-  $("cuisine").onchange = e => { state.cuisine = e.target.value; render(); };
-  $("hood").onchange = e => { state.hood = e.target.value; render(); };
-  $("sort").onchange = e => { state.sort = e.target.value; render(); };
-  $("faves").onclick = e => { state.faves = !state.faves; e.currentTarget.setAttribute("aria-pressed", state.faves); render(); };
-  $("hideClosed").onclick = e => { state.hideClosed = !state.hideClosed; e.currentTarget.setAttribute("aria-pressed", state.hideClosed); render(); };
+  $("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(true); };
+  $("hood").onchange = e => { state.hood = e.target.value; render(true); };
+  $("sort").onchange = e => { state.sort = e.target.value; render(false); };
+  $("faves").onclick = e => { state.faves = !state.faves; e.currentTarget.setAttribute("aria-pressed", state.faves); render(true); };
+  $("hideClosed").onclick = e => { state.hideClosed = !state.hideClosed; e.currentTarget.setAttribute("aria-pressed", state.hideClosed); render(false); };
   $("reset").onclick = () => {
-    Object.assign(state, {q:"", cuisine:"", hood:"", faves:false, hideClosed:true, sort:"name"});
-    state.sections.clear(); state.prices.clear();
-    $("q").value=""; $("cuisine").value=""; $("hood").value=""; $("sort").value="name";
+    Object.assign(state, {q:"", hood:"", faves:false, hideClosed:true, sort:"name"});
+    state.cats.clear(); state.prices.clear();
+    $("q").value=""; $("hood").value=""; $("sort").value="name";
     document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed","false"));
     $("hideClosed").setAttribute("aria-pressed","true");
-    render(true);
+    render(false); resetView();
   };
 
-  // ---- filtering & sorting ----
+  // ---- filter & sort ----
   function matches(r){
-    if (state.sections.size && !state.sections.has(r.section)) return false;
-    if (state.cuisine && r.cuisine !== state.cuisine) return false;
+    if (state.cats.size && !state.cats.has(r.category)) return false;
     if (state.hood && r.neighborhood !== state.hood) return false;
     if (state.prices.size && !state.prices.has(r.price)) return false;
-    if (state.faves && !r.tags.includes("fave")) return false;
+    if (state.faves && !r.isFave) return false;
     if (state.hideClosed && r.isClosed) return false;
     if (state.q){
-      const hay = [r.name, r.cuisine, r.neighborhood, r.address, ...r.notes].join(" ").toLowerCase();
+      const hay = [r.name, r.category, r.type, r.neighborhood, r.address, ...r.notes].join(" ").toLowerCase();
       if (!hay.includes(state.q)) return false;
     }
     return true;
   }
-  const by = k => (a,b) => a[k].localeCompare(b[k]) || a.name.localeCompare(b.name);
+  const byName = (a,b) => a.name.localeCompare(b.name);
   const SORTS = {
-    name: (a,b) => a.name.localeCompare(b.name),
-    cuisine: by("cuisine"),
-    neighborhood: by("neighborhood"),
-    priceAsc: (a,b) => a.price-b.price || a.name.localeCompare(b.name),
-    priceDesc: (a,b) => b.price-a.price || a.name.localeCompare(b.name)
+    name: byName,
+    cuisine: (a,b) => CAT_ORDER[a.category]-CAT_ORDER[b.category] || a.type.localeCompare(b.type) || byName(a,b),
+    neighborhood: (a,b) => a.neighborhood.localeCompare(b.neighborhood) || byName(a,b),
+    priceAsc: (a,b) => a.price-b.price || byName(a,b),
+    priceDesc: (a,b) => b.price-a.price || byName(a,b),
   };
   ["overall","food","value","vibe","service"].forEach(k => {
     SORTS["r_"+k] = (a,b) => {
       const x = ratingOf(a,k), y = ratingOf(b,k);
-      if (x == null && y == null) return a.name.localeCompare(b.name);
+      if (x == null && y == null) return byName(a,b);
       if (x == null) return 1; if (y == null) return -1;
-      return y - x || (b.overall||0) - (a.overall||0) || a.name.localeCompare(b.name);
+      return y-x || (b.overall||0)-(a.overall||0) || byName(a,b);
     };
   });
 
-  const infoLine = r => `${esc(r.cuisine)} · ${esc(r.neighborhood)} · ${$$(r.price)}`;
-  const badges = r => r.tags.map(t => BADGE[t] ? `<span class="badge b-${t}">${BADGE[t]}</span>` : "").join(" ");
-  const notesHtml = r => `<ul>${r.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`;
-
   // ---- map ----
-  let map = null; const markers = {};
-  if (window.L){
-    map = L.map("map", {zoomControl:true}).setView([41.89, -87.64], 12);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom:19
-    }).addTo(map);
-    const legend = L.control({position:"bottomright"});
-    legend.onAdd = () => { const d = L.DomUtil.create("div","legend");
-      d.innerHTML = Object.values(SECTIONS).map(s => `<div><span class="dot" style="--c:${s.hex}"></span>${s.label}</div>`).join("") +
-        `<div style="margin-top:2px;color:#6f6a62">★ = JP favorite</div>`; return d; };
-    legend.addTo(map);
+  const HOME = {center:[-87.648, 41.905], zoom:11.4};
+  let map = null, popup = null, hideTimer = null, pinnedId = null;
+  const markers = {};
+  const byId = Object.fromEntries(data.map(r => [r.id, r]));
+
+  if (window.maplibregl){
+    map = new maplibregl.Map({container:"map", style:MAP_STYLE, ...HOME, attributionControl:{compact:true}, dragRotate:false, pitchWithRotate:false});
+    map.addControl(new maplibregl.NavigationControl({showCompass:false}), "top-left");
+    map.touchZoomRotate.disableRotation();
+    popup = new maplibregl.Popup({closeButton:false, closeOnClick:false, offset:16, maxWidth:"320px", className:"tip", focusAfterOpen:false});
 
     data.forEach(r => {
-      const fave = r.tags.includes("fave");
-      const cls = ["pin", fave?"fave":"", r.isClosed?"closed":""].join(" ");
-      const size = fave ? 22 : 16;
-      const icon = L.divIcon({className:"", iconSize:[size,size], iconAnchor:[size/2,size/2],
-        html:`<div class="${cls}" style="--c:${SECTIONS[r.section].hex}">${fave?"★":""}</div>`});
-      const m = L.marker([r.lat, r.lng], {icon, riseOnHover:true, zIndexOffset: fave?500:0});
-      m.bindTooltip(`<div class="tip"><h4>${esc(r.name)} ${badges(r)}</h4><div class="info">${infoLine(r)}${r.overall!=null?` · ★ ${r.overall.toFixed(1)}`:""}<br>${esc(r.address)}</div>${ratingsHtml(r)}${notesHtml(r)}</div>`,
-        {direction:"top", offset:[0,-size/2], className:"tip", opacity:1});
-      m.on("click", () => { const c = document.querySelector(`.card[data-id="${r.id}"]`); if (c){ c.scrollIntoView({behavior:"smooth", block:"center"}); flash(c);} });
-      m.on("mouseover", () => setActive(r.id, true));
-      m.on("mouseout", () => setActive(r.id, false));
-      markers[r.id] = m;
+      const el = document.createElement("div");
+      el.className = "pin-wrap";
+      el.innerHTML = `<div class="pin${r.isFave?" fave":""}${r.isClosed?" closed":""}" style="--c:${colorOf(r)}">${r.isFave?"★":""}</div>`;
+      el.style.zIndex = r.isFave ? 2 : 1;
+      el.addEventListener("mouseenter", () => { pinnedId = null; showPopup(r.id); setActive(r.id, true); });
+      el.addEventListener("mouseleave", () => { setActive(r.id, false); scheduleHide(); });
+      el.addEventListener("click", e => {
+        e.stopPropagation(); pinnedId = r.id; showPopup(r.id);
+        const c = document.querySelector(`.card[data-id="${r.id}"]`);
+        if (c){ c.scrollIntoView({behavior:"smooth", block:"center"}); flash(c); }
+      });
+      markers[r.id] = new maplibregl.Marker({element:el}).setLngLat([r.lng, r.lat]).addTo(map);
     });
+    map.on("click", () => { pinnedId = null; popup.remove(); });
   } else {
     $("map").innerHTML = '<div class="nomap">Map couldn\'t load (offline?). The list still works.</div>';
   }
 
+  function showPopup(id){
+    if (!map) return;
+    clearTimeout(hideTimer);
+    const r = byId[id];
+    popup.setLngLat([r.lng, r.lat]).setHTML(tipHtml(r)).addTo(map);
+    const el = popup.getElement();
+    el.onmouseenter = () => clearTimeout(hideTimer);
+    el.onmouseleave = scheduleHide;
+  }
+  function scheduleHide(){
+    if (!map || pinnedId != null) return;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => popup.remove(), 220);
+  }
   function setActive(id, on){
     const c = document.querySelector(`.card[data-id="${id}"]`); if (c) c.classList.toggle("active", on);
-    const el = markers[id] && markers[id].getElement(); if (el && el.firstChild) el.firstChild.classList.toggle("hl", on);
+    const m = markers[id]; if (!m) return;
+    const el = m.getElement(); el.firstChild.classList.toggle("hl", on);
+    el.style.zIndex = on ? 10 : (byId[id].isFave ? 2 : 1);
   }
-  function flash(c){ c.classList.add("active"); setTimeout(()=>c.classList.remove("active"), 1200); }
+  function flash(c){ c.classList.add("active"); setTimeout(() => c.classList.remove("active"), 1200); }
+  function resetView(){ if (map) map.flyTo({...HOME, duration:600}); }
 
   // ---- render ----
   function render(refit){
@@ -264,30 +303,38 @@
     $("count").textContent = `${shown.length} of ${data.length} spots`;
     $("list").innerHTML = shown.length ? shown.map(r => `
       <div class="card" data-id="${r.id}">
-        <h3><span class="dot" style="--c:${SECTIONS[r.section].hex}"></span>${esc(r.name)} ${badges(r)}${overallHtml(r)}</h3>
+        <h3><span class="dot" style="--c:${colorOf(r)}"></span>${esc(r.name)} ${badges(r)}${overallHtml(r)}</h3>
         <div class="info">${infoLine(r)}</div>
         ${ratingsHtml(r)}
         ${notesHtml(r)}
-      </div>`).join("") : `<div class="empty">Nothing matches — try loosening a filter.</div>`;
+        ${reserveHtml(r)}
+      </div>`).join("") : `<div class="empty">Nothing matches. Try loosening a filter.</div>`;
 
     document.querySelectorAll(".card").forEach(c => {
       const id = +c.dataset.id;
-      c.onmouseenter = () => { setActive(id, true); if (markers[id]) markers[id].openTooltip(); };
-      c.onmouseleave = () => { setActive(id, false); if (markers[id]) markers[id].closeTooltip(); };
-      c.onclick = () => { if (map && markers[id]) map.flyTo(markers[id].getLatLng(), Math.max(map.getZoom(), 15), {duration:.6}); };
+      c.onmouseenter = () => { setActive(id, true); pinnedId = null; showPopup(id); };
+      c.onmouseleave = () => { setActive(id, false); scheduleHide(); };
+      c.onclick = e => {
+        if (e.target.closest("a")) return;
+        if (!map) return;
+        pinnedId = id; showPopup(id);
+        map.flyTo({center:[byId[id].lng, byId[id].lat], zoom:Math.max(map.getZoom(), 14.5), duration:600});
+      };
     });
 
     if (map){
-      Object.entries(markers).forEach(([id,m]) => ids.has(+id) ? m.addTo(map) : m.remove());
-      if (shown.length && (refit || anyFilter())){
-        const b = L.latLngBounds(shown.map(r => [r.lat, r.lng]));
-        map.fitBounds(b.pad(0.15), {maxZoom:15, animate:true});
-      }
+      Object.entries(markers).forEach(([id, m]) => { m.getElement().style.display = ids.has(+id) ? "" : "none"; });
+      if (pinnedId != null && !ids.has(pinnedId)) { pinnedId = null; popup.remove(); }
+      if (refit && shown.length && anyFilter()){
+        const b = new maplibregl.LngLatBounds();
+        shown.forEach(r => b.extend([r.lng, r.lat]));
+        map.fitBounds(b, {padding:70, maxZoom:15, duration:600});
+      } else if (refit && !anyFilter()) resetView();
     }
   }
-  function anyFilter(){ return state.q || state.sections.size || state.cuisine || state.hood || state.prices.size || state.faves; }
+  const anyFilter = () => state.q || state.cats.size || state.hood || state.prices.size || state.faves;
 
-  render();
+  render(false);
 })();
 </script>
 </body>

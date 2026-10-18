@@ -31,13 +31,14 @@ Everything lives in `restaurants.js`. To add a spot, copy an existing entry and 
 ```js
 {
   "name": "New Place",
-  "cuisine": "Thai",
+  "category": "Japanese",          // American | Italian & European | Mediterranean & Latin | Japanese | Chinese, Korean & SE Asian | Dessert & Bars
+  "type": "Ramen",                 // specific cuisine shown on the card
   "neighborhood": "Logan Square",
   "price": 2,                      // 1–4  →  $ to $$$$
-  "section": "Japanese/Seafood/Asian", // sets the pin color; must match one of the 4 sections
+  "ratings": {"food": 4.5, "value": 4, "vibe": 5, "service": 4}, // 0–5, halves OK; null = not rated
+  "reserve": {"url": "https://www.opentable.com/r/...", "via": "OpenTable"}, // via: OpenTable | Resy | Tock | SevenRooms | Website | Phone | Walk-in (optional "note")
   "lat": 41.9231, "lng": -87.7093, // in Google Maps, right-click the spot and click the numbers to copy them
   "address": "123 N Somewhere Ave",
-  "ratings": {"food": 4.5, "value": 4, "vibe": 5, "service": 4}, // 0–5, halves OK; null = not rated
   "notes": ["First comment", "Second comment"],
   "tags": ["fave"]                 // optional: fave, skip, wishlist, closed, maybe-closed
 }
@@ -47,5 +48,5 @@ Commit the change on GitHub (the pencil icon edits the file in your browser) and
 
 ## Notes
 
-- Map tiles © OpenStreetMap contributors (free, no API key needed).
-- Prices, neighborhoods, and star ratings started as drafts guessed from my comments. Change any you disagree with.
+- Map: MapLibre GL + OpenFreeMap vector tiles, © OpenStreetMap contributors (free, no API key needed).
+- Prices, neighborhoods, and star ratings started as drafts guessed from my comments. Reservation links were found via web search in Oct 2026. Change any you disagree with.

@@ -1,11 +1,17 @@
 // ✏️ Edit this file to update the map. Each entry = one pin.
-// price: 1-4 ($-$$$$)   tags: fave | skip | wishlist | closed | maybe-closed
-// ratings: 0-5 stars (halves OK, e.g. 4.5) for food, value, vibe, service. Use null to hide a category.
+// category: one of "American", "Italian & European", "Mediterranean & Latin", "Japanese",
+//           "Chinese, Korean & SE Asian", "Dessert & Bars"   (sets pin color + filter chip)
+// type: the specific cuisine shown on the card (e.g. "Steakhouse", "Ramen")
+// price: 1-4 ($-$$$$)
+// ratings: 0-5 stars (halves OK) for food, value, vibe, service. Use null to hide one / the whole thing.
+// reserve: {url, via, note?}  via = OpenTable | Resy | Tock | SevenRooms | Website | Phone | Walk-in
+// tags: fave | skip | wishlist | closed | maybe-closed
 // Tip: get lat/lng by right-clicking a spot in Google Maps.
 const RESTAURANTS = [
   {
     "name": "Aba",
-    "cuisine": "Mediterranean",
+    "category": "Mediterranean & Latin",
+    "type": "Mediterranean",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -14,7 +20,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://www.opentable.com/r/aba-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.88736,
     "lng": -87.64792,
     "address": "302 N Green St",
@@ -28,7 +37,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Ema",
-    "cuisine": "Mediterranean",
+    "category": "Mediterranean & Latin",
+    "type": "Mediterranean",
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
@@ -37,7 +47,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://www.opentable.com/r/ema-river-north-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.89094,
     "lng": -87.62959,
     "address": "74 W Illinois St",
@@ -48,7 +61,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Avec",
-    "cuisine": "Mediterranean",
+    "category": "Mediterranean & Latin",
+    "type": "Mediterranean",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -57,7 +71,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://www.exploretock.com/avec",
+      "via": "Tock"
+    },
     "lat": 41.88461,
     "lng": -87.64268,
     "address": "615 W Randolph St",
@@ -70,7 +87,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Tanta",
-    "cuisine": "Peruvian",
+    "category": "Mediterranean & Latin",
+    "type": "Peruvian",
     "neighborhood": "River North",
     "price": 3,
     "ratings": {
@@ -79,7 +97,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://www.opentable.com/r/tanta-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.89149,
     "lng": -87.63065,
     "address": "118 W Grand Ave",
@@ -90,7 +111,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Beatnik on the River",
-    "cuisine": "Mediterranean",
+    "category": "Mediterranean & Latin",
+    "type": "Mediterranean",
     "neighborhood": "Loop",
     "price": 3,
     "ratings": {
@@ -99,7 +121,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/beatnik-on-the-river",
+      "via": "Resy"
+    },
     "lat": 41.88522,
     "lng": -87.6372,
     "address": "180 N Upper Wacker Dr",
@@ -110,7 +135,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Staropolska",
-    "cuisine": "Polish",
+    "category": "Italian & European",
+    "type": "Polish",
     "neighborhood": "Avondale",
     "price": 2,
     "ratings": {
@@ -119,7 +145,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://www.opentable.com/r/staropolska-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.9367,
     "lng": -87.7076,
     "address": "3030 N Milwaukee Ave",
@@ -130,7 +159,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Tomate",
-    "cuisine": "Mexican",
+    "category": "Mediterranean & Latin",
+    "type": "Mexican",
     "neighborhood": "Evanston",
     "price": 1,
     "ratings": {
@@ -139,10 +169,14 @@ const RESTAURANTS = [
       "vibe": 2,
       "service": 3
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://www.tomatefreshkitchen.com/",
+      "via": "Walk-in",
+      "note": "Takeout only"
+    },
     "lat": 42.0583,
     "lng": -87.684,
-    "address": "908 Noyes St, Evanston",
+    "address": "914 Noyes St, Evanston",
     "notes": [
       "Take-out only!! Best burritos ever, my death row meal (and I don't even like burritos). The only con is that it's in Evanston."
     ],
@@ -152,7 +186,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Bistro Campagne",
-    "cuisine": "French",
+    "category": "Italian & European",
+    "type": "French",
     "neighborhood": "Lincoln Square",
     "price": 3,
     "ratings": {
@@ -161,7 +196,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "Med/Mexican/Etc",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/bistro-campagne",
+      "via": "Resy"
+    },
     "lat": 41.9638,
     "lng": -87.6857,
     "address": "4518 N Lincoln Ave",
@@ -172,7 +210,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Pequod's",
-    "cuisine": "Pizza",
+    "category": "Italian & European",
+    "type": "Pizza",
     "neighborhood": "Lincoln Park",
     "price": 2,
     "ratings": {
@@ -181,7 +220,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.exploretock.com/pequodspizza",
+      "via": "Tock"
+    },
     "lat": 41.92195,
     "lng": -87.66415,
     "address": "2207 N Clybourn Ave",
@@ -195,7 +237,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Girl & the Goat",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -204,7 +247,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/girl-and-the-goat-chicago",
+      "via": "Resy"
+    },
     "lat": 41.88461,
     "lng": -87.64737,
     "address": "809 W Randolph St",
@@ -217,7 +263,8 @@ const RESTAURANTS = [
   },
   {
     "name": "3 Arts Club Cafe",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "Gold Coast",
     "price": 2,
     "ratings": {
@@ -226,7 +273,11 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/3-arts-club-cafe-at-rh-chicago",
+      "via": "OpenTable",
+      "note": "Book well ahead"
+    },
     "lat": 41.90541,
     "lng": -87.62867,
     "address": "1300 N Dearborn St",
@@ -238,7 +289,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Bavette's Bar & Boeuf",
-    "cuisine": "Steakhouse",
+    "category": "American",
+    "type": "Steakhouse",
     "neighborhood": "River North",
     "price": 4,
     "ratings": {
@@ -247,7 +299,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/bavettes-bar-and-boeuf",
+      "via": "Resy"
+    },
     "lat": 41.88913,
     "lng": -87.63307,
     "address": "218 W Kinzie St",
@@ -258,7 +313,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Il Porcellino",
-    "cuisine": "Italian",
+    "category": "Italian & European",
+    "type": "Italian",
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
@@ -267,7 +323,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/il-porcellino-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.88968,
     "lng": -87.62923,
     "address": "59 W Hubbard St",
@@ -278,7 +337,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Gilt Bar",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "River North",
     "price": 3,
     "ratings": {
@@ -287,7 +347,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/gilt-bar",
+      "via": "Resy"
+    },
     "lat": 41.88921,
     "lng": -87.63341,
     "address": "230 W Kinzie St",
@@ -302,7 +365,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Ciccio Mio",
-    "cuisine": "Italian",
+    "category": "Italian & European",
+    "type": "Italian",
     "neighborhood": "River North",
     "price": 3,
     "ratings": {
@@ -311,7 +375,11 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/ciccio-mio",
+      "via": "Resy",
+      "note": "Opens 21 days out at 9am"
+    },
     "lat": 41.88906,
     "lng": -87.63322,
     "address": "226 W Kinzie St",
@@ -325,7 +393,8 @@ const RESTAURANTS = [
   },
   {
     "name": "North Pond",
-    "cuisine": "Fine Dining",
+    "category": "American",
+    "type": "Fine Dining",
     "neighborhood": "Lincoln Park",
     "price": 4,
     "ratings": {
@@ -334,7 +403,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.exploretock.com/northpond",
+      "via": "Tock"
+    },
     "lat": 41.92955,
     "lng": -87.637,
     "address": "2610 N Cannon Dr",
@@ -347,7 +419,8 @@ const RESTAURANTS = [
   },
   {
     "name": "The Purple Pig",
-    "cuisine": "Mediterranean",
+    "category": "Mediterranean & Latin",
+    "type": "Mediterranean",
     "neighborhood": "Streeterville",
     "price": 2,
     "ratings": {
@@ -356,7 +429,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.sevenrooms.com/explore/thepurplepigchicago/reservations/create/search/",
+      "via": "SevenRooms"
+    },
     "lat": 41.8907,
     "lng": -87.6243,
     "address": "444 N Michigan Ave",
@@ -367,7 +443,8 @@ const RESTAURANTS = [
   },
   {
     "name": "The Signature Room",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "Streeterville",
     "price": 4,
     "ratings": {
@@ -376,7 +453,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": null,
     "lat": 41.89885,
     "lng": -87.6229,
     "address": "875 N Michigan Ave (95th fl)",
@@ -390,7 +467,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Roister",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -399,7 +477,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "section": "American/Italian",
+    "reserve": null,
     "lat": 41.88733,
     "lng": -87.6508,
     "address": "951 W Fulton Market",
@@ -412,7 +490,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Au Cheval",
-    "cuisine": "Burgers",
+    "category": "American",
+    "type": "Burgers",
     "neighborhood": "West Loop",
     "price": 2,
     "ratings": {
@@ -421,7 +500,11 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/au-cheval-chicago",
+      "via": "Resy",
+      "note": "Mostly walk-in; few Resy slots"
+    },
     "lat": 41.88454,
     "lng": -87.64715,
     "address": "800 W Randolph St (also Small Cheval)",
@@ -432,7 +515,8 @@ const RESTAURANTS = [
   },
   {
     "name": "The Gage",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "Loop",
     "price": 3,
     "ratings": {
@@ -441,7 +525,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/the-gage-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.8814,
     "lng": -87.6246,
     "address": "24 S Michigan Ave",
@@ -452,7 +539,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Alla Vita",
-    "cuisine": "Italian",
+    "category": "Italian & European",
+    "type": "Italian",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -461,10 +549,14 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "American/Italian",
-    "lat": 41.88552,
-    "lng": -87.65465,
-    "address": "1110 W Lake St",
+    "reserve": {
+      "url": "https://www.opentable.com/r/alla-vita-chicago",
+      "via": "OpenTable",
+      "note": "Opens 60 days out"
+    },
+    "lat": 41.88461,
+    "lng": -87.64144,
+    "address": "564 W Randolph St",
     "notes": [
       "GREAT atmosphere",
       "BOMBASS pizza crust"
@@ -475,7 +567,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Smyth",
-    "cuisine": "Fine Dining",
+    "category": "American",
+    "type": "Fine Dining",
     "neighborhood": "West Loop",
     "price": 4,
     "ratings": {
@@ -484,7 +577,11 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.exploretock.com/smyth/",
+      "via": "Tock",
+      "note": "Prepaid"
+    },
     "lat": 41.8851,
     "lng": -87.65924,
     "address": "177 N Ada St",
@@ -495,8 +592,9 @@ const RESTAURANTS = [
   },
   {
     "name": "S.K.Y.",
-    "cuisine": "Fusion",
-    "neighborhood": "Pilsen",
+    "category": "American",
+    "type": "Fusion",
+    "neighborhood": "Lincoln Park",
     "price": 3,
     "ratings": {
       "food": 4,
@@ -504,10 +602,13 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "section": "American/Italian",
-    "lat": 41.8578,
-    "lng": -87.6582,
-    "address": "1239 W 18th St",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/s-k-y",
+      "via": "Resy"
+    },
+    "lat": 41.9233,
+    "lng": -87.6372,
+    "address": "2300 N Lincoln Park W (moved from Pilsen in 2025)",
     "notes": [
       "Korean/Mexican American fusion? Hip place with good ambiance. Really good amuse-bouche lol."
     ],
@@ -515,7 +616,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Pizzeria Portofino",
-    "cuisine": "Italian",
+    "category": "Italian & European",
+    "type": "Italian",
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
@@ -524,7 +626,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 3.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/pizzeria-portofino-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.8871,
     "lng": -87.6366,
     "address": "317 N Clark St (Wolf Point)",
@@ -535,7 +640,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Oriole",
-    "cuisine": "Fine Dining",
+    "category": "American",
+    "type": "Fine Dining",
     "neighborhood": "West Loop",
     "price": 4,
     "ratings": {
@@ -544,7 +650,11 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.exploretock.com/oriolechicago/",
+      "via": "Tock",
+      "note": "Prepaid"
+    },
     "lat": 41.88642,
     "lng": -87.64379,
     "address": "661 W Walnut St",
@@ -557,7 +667,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Geja's Cafe",
-    "cuisine": "Fondue",
+    "category": "Italian & European",
+    "type": "Fondue",
     "neighborhood": "Lincoln Park",
     "price": 3,
     "ratings": {
@@ -566,7 +677,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/gejas-cafe-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.91807,
     "lng": -87.63602,
     "address": "340 W Armitage Ave",
@@ -577,7 +691,8 @@ const RESTAURANTS = [
   },
   {
     "name": "RPM Steak",
-    "cuisine": "Steakhouse",
+    "category": "American",
+    "type": "Steakhouse",
     "neighborhood": "River North",
     "price": 4,
     "ratings": {
@@ -586,7 +701,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/rpm-steak",
+      "via": "OpenTable"
+    },
     "lat": 41.88913,
     "lng": -87.6294,
     "address": "66 W Kinzie St",
@@ -598,7 +716,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Cobblestone",
-    "cuisine": "European",
+    "category": "Italian & European",
+    "type": "European",
     "neighborhood": "North Center",
     "price": 2,
     "ratings": {
@@ -607,7 +726,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/cobblestone-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.9605,
     "lng": -87.6825,
     "address": "4337 N Lincoln Ave",
@@ -619,7 +741,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Summer House Santa Monica",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "Lincoln Park",
     "price": 2,
     "ratings": {
@@ -628,7 +751,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/summer-house-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.91724,
     "lng": -87.64715,
     "address": "1954 N Halsted St",
@@ -640,7 +766,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Sepia",
-    "cuisine": "Fine Dining",
+    "category": "American",
+    "type": "Fine Dining",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -649,7 +776,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/sepia-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.88412,
     "lng": -87.64231,
     "address": "123 N Jefferson St",
@@ -662,7 +792,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Ella Elli",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "Lakeview",
     "price": 3,
     "ratings": {
@@ -671,7 +802,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.exploretock.com/ellaelli/",
+      "via": "Tock"
+    },
     "lat": 41.9452,
     "lng": -87.66043,
     "address": "1349 W Cornelia Ave",
@@ -686,7 +820,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Apolonia",
-    "cuisine": "American",
+    "category": "American",
+    "type": "American",
     "neighborhood": "South Loop",
     "price": 3,
     "ratings": {
@@ -695,7 +830,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/apolonia-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.853,
     "lng": -87.6237,
     "address": "2201 S Michigan Ave",
@@ -707,7 +845,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Rose Mary",
-    "cuisine": "Italian",
+    "category": "Italian & European",
+    "type": "Italian",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -716,7 +855,11 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.sevenrooms.com/explore/rosemary/reservations/create/search/",
+      "via": "SevenRooms",
+      "note": "Opens 30 days out, goes fast"
+    },
     "lat": 41.88733,
     "lng": -87.65034,
     "address": "932 W Fulton Market",
@@ -729,7 +872,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Boka",
-    "cuisine": "Fine Dining",
+    "category": "American",
+    "type": "Fine Dining",
     "neighborhood": "Lincoln Park",
     "price": 4,
     "ratings": {
@@ -738,7 +882,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/boka-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.91317,
     "lng": -87.64715,
     "address": "1729 N Halsted St",
@@ -749,7 +896,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Maple & Ash",
-    "cuisine": "Steakhouse",
+    "category": "American",
+    "type": "Steakhouse",
     "neighborhood": "Gold Coast",
     "price": 4,
     "ratings": {
@@ -758,7 +906,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.sevenrooms.com/landing/mapleandashchicagodiningroom",
+      "via": "SevenRooms"
+    },
     "lat": 41.90053,
     "lng": -87.62799,
     "address": "8 W Maple St",
@@ -769,7 +920,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Esmé",
-    "cuisine": "Fine Dining",
+    "category": "American",
+    "type": "Fine Dining",
     "neighborhood": "Lincoln Park",
     "price": 4,
     "ratings": {
@@ -778,7 +930,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4.5
     },
-    "section": "American/Italian",
+    "reserve": {
+      "url": "https://www.exploretock.com/esme-chicago/",
+      "via": "Tock"
+    },
     "lat": 41.9216,
     "lng": -87.6375,
     "address": "2200 N Clark St",
@@ -789,7 +944,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Le Colonial",
-    "cuisine": "Vietnamese",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Vietnamese",
     "neighborhood": "Gold Coast",
     "price": 3,
     "ratings": {
@@ -798,7 +954,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/le-colonial-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.89999,
     "lng": -87.62642,
     "address": "57 E Oak St",
@@ -809,7 +968,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Cocoro",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
@@ -818,7 +978,11 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 4
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://cocorosushi.squarespace.com/",
+      "via": "Phone",
+      "note": "Call 312-943-2220"
+    },
     "lat": 41.89398,
     "lng": -87.63264,
     "address": "668 N Wells St",
@@ -831,9 +995,10 @@ const RESTAURANTS = [
     ]
   },
   {
-    "name": "Hi-Five Ramen",
-    "cuisine": "Ramen",
-    "neighborhood": "Wicker Park",
+    "name": "High Five Ramen",
+    "category": "Japanese",
+    "type": "Ramen",
+    "neighborhood": "West Loop",
     "price": 1,
     "ratings": {
       "food": 4,
@@ -841,10 +1006,14 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
-    "lat": 41.9036,
-    "lng": -87.67647,
-    "address": "2012 W Division St",
+    "reserve": {
+      "url": "https://www.highfiveramen.com/",
+      "via": "Walk-in",
+      "note": "Waitlist only"
+    },
+    "lat": 41.88393,
+    "lng": -87.64792,
+    "address": "112 N Green St (basement)",
     "notes": [
       "Ramen in the dark"
     ],
@@ -852,7 +1021,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Sunda",
-    "cuisine": "Asian Fusion",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Asian Fusion",
     "neighborhood": "River North",
     "price": 3,
     "ratings": {
@@ -861,7 +1031,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 3.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/sunda-new-asian-river-north-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.89094,
     "lng": -87.63046,
     "address": "110 W Illinois St",
@@ -872,7 +1045,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Roka Akor",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "River North",
     "price": 4,
     "ratings": {
@@ -881,7 +1055,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 3.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/roka-akor-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.89015,
     "lng": -87.63022,
     "address": "456 N Clark St",
@@ -892,7 +1069,8 @@ const RESTAURANTS = [
   },
   {
     "name": "RPM Seafood",
-    "cuisine": "Seafood",
+    "category": "American",
+    "type": "Seafood",
     "neighborhood": "River North",
     "price": 4,
     "ratings": {
@@ -901,7 +1079,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/rpm-seafood-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.88745,
     "lng": -87.635,
     "address": "317 N Clark St",
@@ -912,7 +1093,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Momotaro",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "West Loop",
     "price": 4,
     "ratings": {
@@ -921,7 +1103,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/momotaro-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.88552,
     "lng": -87.64763,
     "address": "820 W Lake St",
@@ -934,7 +1119,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Arami",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "West Town",
     "price": 3,
     "ratings": {
@@ -943,18 +1129,21 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": null,
     "lat": 41.89637,
     "lng": -87.67204,
     "address": "1829 W Chicago Ave",
     "notes": [
       "Good sushi, but if I had to choose one I'd go to Momotaro"
     ],
-    "tags": []
+    "tags": [
+      "closed"
+    ]
   },
   {
     "name": "Gaijin",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "West Loop",
     "price": 2,
     "ratings": {
@@ -963,7 +1152,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/gaijin-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.8806,
     "lng": -87.6508,
     "address": "950 W Monroe St",
@@ -974,7 +1166,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Minghin Cuisine",
-    "cuisine": "Chinese",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Chinese",
     "neighborhood": "Chinatown",
     "price": 2,
     "ratings": {
@@ -983,7 +1176,11 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.minghincuisine.com/chinatown",
+      "via": "Phone",
+      "note": "Call 312-808-1999"
+    },
     "lat": 41.85395,
     "lng": -87.6324,
     "address": "2168 S Archer Ave",
@@ -994,7 +1191,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Lao Sze Chuan",
-    "cuisine": "Chinese",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Chinese",
     "neighborhood": "Chinatown",
     "price": 2,
     "ratings": {
@@ -1003,7 +1201,11 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.laoszechuanusa.com/",
+      "via": "Phone",
+      "note": "Call 312-326-3888"
+    },
     "lat": 41.8538,
     "lng": -87.633,
     "address": "2172 S Archer Ave",
@@ -1014,7 +1216,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Friends Station",
-    "cuisine": "Hot Pot",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Hot Pot",
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
@@ -1023,7 +1226,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.friendsstation.com/",
+      "via": "Walk-in"
+    },
     "lat": 41.89637,
     "lng": -87.6278,
     "address": "800 N State St",
@@ -1037,7 +1243,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Sushi Plus",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "Chinatown",
     "price": 2,
     "ratings": {
@@ -1046,7 +1253,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.rotarysushi.com/",
+      "via": "Walk-in"
+    },
     "lat": 41.8546,
     "lng": -87.6317,
     "address": "2131 S Archer Ave",
@@ -1058,7 +1268,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Cho Sun Ok",
-    "cuisine": "Korean",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Korean",
     "neighborhood": "North Center",
     "price": 2,
     "ratings": {
@@ -1067,7 +1278,11 @@ const RESTAURANTS = [
       "vibe": 2.5,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "http://chosunokrestaurant.com/",
+      "via": "Walk-in",
+      "note": "No reservations"
+    },
     "lat": 41.9585,
     "lng": -87.6815,
     "address": "4200 N Lincoln Ave",
@@ -1080,7 +1295,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Perilla Korean American Fare",
-    "cuisine": "Korean",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Korean",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -1089,7 +1305,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/perilla-korean-american-fare-reservations-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.88936,
     "lng": -87.64451,
     "address": "401 N Milwaukee Ave",
@@ -1100,7 +1319,8 @@ const RESTAURANTS = [
   },
   {
     "name": "TAK Korean Bistro & Karaoke",
-    "cuisine": "Korean",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Korean",
     "neighborhood": "South Loop",
     "price": 3,
     "ratings": {
@@ -1109,7 +1329,10 @@ const RESTAURANTS = [
       "vibe": 2.5,
       "service": 3.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/tak-korean-bistro-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.8685,
     "lng": -87.626,
     "address": "1132 S Wabash Ave",
@@ -1121,7 +1344,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Duck Duck Goat",
-    "cuisine": "Chinese",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Chinese",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -1130,7 +1354,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/duck-duck-goat",
+      "via": "Resy"
+    },
     "lat": 41.88733,
     "lng": -87.64853,
     "address": "857 W Fulton Market",
@@ -1141,7 +1368,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Sun Wah BBQ",
-    "cuisine": "Chinese",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Chinese",
     "neighborhood": "Uptown",
     "price": 2,
     "ratings": {
@@ -1150,7 +1378,11 @@ const RESTAURANTS = [
       "vibe": 2.5,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://sunwahbbq.com/restaurant/reservations/",
+      "via": "Phone",
+      "note": "Call 773-769-1254 · closed Thu"
+    },
     "lat": 41.974,
     "lng": -87.6597,
     "address": "5039 N Broadway",
@@ -1161,7 +1393,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Jeong",
-    "cuisine": "Korean",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Korean",
     "neighborhood": "West Town",
     "price": 4,
     "ratings": {
@@ -1170,7 +1403,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/jeong-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.89637,
     "lng": -87.66311,
     "address": "1460 W Chicago Ave",
@@ -1184,7 +1420,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Ping Pong",
-    "cuisine": "Chinese",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Chinese",
     "neighborhood": "Lakeview",
     "price": 2,
     "ratings": {
@@ -1193,7 +1430,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/pingpong",
+      "via": "Resy"
+    },
     "lat": 41.9423,
     "lng": -87.6447,
     "address": "3322 N Broadway",
@@ -1204,7 +1444,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Kyuramen",
-    "cuisine": "Ramen",
+    "category": "Japanese",
+    "type": "Ramen",
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
@@ -1213,7 +1454,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.kyuramen.com/locations/downtown-chicago",
+      "via": "Walk-in"
+    },
     "lat": 41.88968,
     "lng": -87.62795,
     "address": "6 W Hubbard St",
@@ -1224,7 +1468,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Miru",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "Lakeshore East",
     "price": 4,
     "ratings": {
@@ -1233,7 +1478,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/miru-at-the-st-regis-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.8875,
     "lng": -87.6185,
     "address": "401 E Wacker Dr",
@@ -1244,7 +1492,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Mako",
-    "cuisine": "Japanese",
+    "category": "Japanese",
+    "type": "Japanese",
     "neighborhood": "West Loop",
     "price": 4,
     "ratings": {
@@ -1253,7 +1502,11 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.exploretock.com/mako",
+      "via": "Tock",
+      "note": "Deposit required"
+    },
     "lat": 41.88552,
     "lng": -87.64548,
     "address": "731 W Lake St",
@@ -1266,7 +1519,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Siam Thai",
-    "cuisine": "Thai",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Thai",
     "neighborhood": "Hyde Park",
     "price": 1,
     "ratings": {
@@ -1275,7 +1529,11 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://chicagosiamthai.com/",
+      "via": "Phone",
+      "note": "Call 773-324-9296"
+    },
     "lat": 41.7951,
     "lng": -87.5868,
     "address": "1639 E 55th St",
@@ -1286,11 +1544,15 @@ const RESTAURANTS = [
   },
   {
     "name": "Mahanakhon Noodle Bar",
-    "cuisine": "Thai",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Thai",
     "neighborhood": "Lakeview",
     "price": 2,
     "ratings": null,
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.opentable.com/r/mahanakhon-noodle-bar-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.9343,
     "lng": -87.6592,
     "address": "2907 N Lincoln Ave",
@@ -1303,7 +1565,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Kumiko",
-    "cuisine": "Bar",
+    "category": "Dessert & Bars",
+    "type": "Bar",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
@@ -1312,7 +1575,10 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "section": "Japanese/Seafood/Asian",
+    "reserve": {
+      "url": "https://www.sevenrooms.com/reservations/kumiko?experience_id=a-la-carte-5254808812077056",
+      "via": "SevenRooms"
+    },
     "lat": 41.88552,
     "lng": -87.64304,
     "address": "630 W Lake St",
@@ -1325,7 +1591,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Bombobar",
-    "cuisine": "Dessert",
+    "category": "Dessert & Bars",
+    "type": "Dessert",
     "neighborhood": "West Loop",
     "price": 1,
     "ratings": {
@@ -1334,18 +1601,24 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3.5
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.bombobar.com/",
+      "via": "Walk-in"
+    },
     "lat": 41.88469,
     "lng": -87.64792,
     "address": "832 W Randolph St",
     "notes": [
       "Quality gelato"
     ],
-    "tags": []
+    "tags": [
+      "maybe-closed"
+    ]
   },
   {
     "name": "Sweet Home Gelato",
-    "cuisine": "Dessert",
+    "category": "Dessert & Bars",
+    "type": "Dessert",
     "neighborhood": "River North",
     "price": 1,
     "ratings": {
@@ -1354,7 +1627,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.instagram.com/sweethomegelato/",
+      "via": "Walk-in"
+    },
     "lat": 41.8876,
     "lng": -87.633,
     "address": "151 W Riverwalk S",
@@ -1368,7 +1644,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Firecakes",
-    "cuisine": "Dessert",
+    "category": "Dessert & Bars",
+    "type": "Dessert",
     "neighborhood": "River North",
     "price": 1,
     "ratings": {
@@ -1377,7 +1654,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3.5
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://firecakesdonuts.com/",
+      "via": "Walk-in"
+    },
     "lat": 41.88968,
     "lng": -87.62944,
     "address": "68 W Hubbard St",
@@ -1391,7 +1671,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Venteux Cafe",
-    "cuisine": "Bakery/Cafe",
+    "category": "Dessert & Bars",
+    "type": "Bakery/Cafe",
     "neighborhood": "Loop",
     "price": 2,
     "ratings": {
@@ -1400,7 +1681,11 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.sevenrooms.com/reservations/venteux",
+      "via": "SevenRooms",
+      "note": "Cafe is walk-in; this books the brasserie"
+    },
     "lat": 41.8862,
     "lng": -87.6245,
     "address": "224 N Michigan Ave",
@@ -1412,7 +1697,8 @@ const RESTAURANTS = [
   },
   {
     "name": "The Aviary",
-    "cuisine": "Bar",
+    "category": "Dessert & Bars",
+    "type": "Bar",
     "neighborhood": "West Loop",
     "price": 4,
     "ratings": {
@@ -1421,7 +1707,11 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4.5
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.exploretock.com/theaviary/",
+      "via": "Tock",
+      "note": "Prepaid"
+    },
     "lat": 41.88733,
     "lng": -87.6509,
     "address": "955 W Fulton Market",
@@ -1432,7 +1722,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Margie's Candies",
-    "cuisine": "Dessert",
+    "category": "Dessert & Bars",
+    "type": "Dessert",
     "neighborhood": "Bucktown",
     "price": 1,
     "ratings": {
@@ -1441,7 +1732,10 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://margiescandies.com/",
+      "via": "Walk-in"
+    },
     "lat": 41.91735,
     "lng": -87.68585,
     "address": "1960 N Western Ave",
@@ -1455,7 +1749,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Taiyaki",
-    "cuisine": "Dessert",
+    "category": "Dessert & Bars",
+    "type": "Dessert",
     "neighborhood": "Lincoln Park",
     "price": 1,
     "ratings": {
@@ -1464,7 +1759,10 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.taiyakichicago.com/",
+      "via": "Walk-in"
+    },
     "lat": 41.929,
     "lng": -87.6433,
     "address": "2618 N Clark St",
@@ -1475,7 +1773,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Afternoon Tea at The Langham",
-    "cuisine": "Afternoon Tea",
+    "category": "Dessert & Bars",
+    "type": "Afternoon Tea",
     "neighborhood": "River North",
     "price": 4,
     "ratings": {
@@ -1484,7 +1783,11 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.exploretock.com/pavilionatthelanghamchicago/",
+      "via": "Tock",
+      "note": "Book 24h ahead"
+    },
     "lat": 41.8882,
     "lng": -87.6268,
     "address": "330 N Wabash Ave",
@@ -1497,7 +1800,8 @@ const RESTAURANTS = [
   },
   {
     "name": "Afternoon Tea at The Drake",
-    "cuisine": "Afternoon Tea",
+    "category": "Dessert & Bars",
+    "type": "Afternoon Tea",
     "neighborhood": "Gold Coast",
     "price": 4,
     "ratings": {
@@ -1506,7 +1810,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "section": "Dessert/Bar",
+    "reserve": {
+      "url": "https://www.opentable.com/r/the-palm-court-chicago",
+      "via": "OpenTable"
+    },
     "lat": 41.9001,
     "lng": -87.6237,
     "address": "140 E Walton Pl",
