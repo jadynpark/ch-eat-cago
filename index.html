@@ -28,7 +28,9 @@
   .chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
   .chip.cat[aria-pressed=true]{background:var(--c);border-color:var(--c)}
   .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px;vertical-align:0;flex:none}
-  .chip.cat[aria-pressed=true] .dot{background:#fff}
+  .chip.cat{display:inline-flex;align-items:center;gap:3px}
+  .chip.cat .emo{font-size:15px;line-height:1;margin-right:2px}
+  .chip.cat[aria-pressed=true]{background:color-mix(in srgb, var(--c) 16%, #fff);color:var(--ink);border-color:var(--c)}
   .meta-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
   .link{background:none;border:0;color:var(--accent);cursor:pointer;font:inherit;font-size:13px;padding:0}
   .list{overflow-y:auto;flex:1;padding:8px 12px 24px}
@@ -127,12 +129,12 @@
 (function(){
   // ---- config ----
   const CATEGORIES = [
-    ["American",                   "#c8442f"],
-    ["Italian & European",         "#3a6bb0"],
-    ["Mediterranean & Latin",      "#de8a12"],
-    ["Japanese",                   "#2f7d6d"],
-    ["Chinese, Korean & SE Asian", "#7f9a22"],
-    ["Dessert & Bars",             "#a14d8c"],
+    ["American",                   "#c8442f", "🍔"],
+    ["Italian & European",         "#3a6bb0", "🍝"],
+    ["Mediterranean & Latin",      "#de8a12", "🧆"],
+    ["Japanese",                   "#2f7d6d", "🍣"],
+    ["Chinese, Korean & SE Asian", "#7f9a22", "🥟"],
+    ["Dessert & Bars",             "#a14d8c", "🍨"],
   ];
   const COLOR = Object.fromEntries(CATEGORIES);
   const CAT_ORDER = Object.fromEntries(CATEGORIES.map(([c],i) => [c,i]));
@@ -176,11 +178,11 @@
   const state = {q:"", cats:new Set(), hood:"", prices:new Set(), faves:false, hideClosed:true, sort:"name"};
   const toggle = (set, v) => set.has(v) ? set.delete(v) : set.add(v);
 
-  CATEGORIES.forEach(([c, hex]) => {
+  CATEGORIES.forEach(([c, hex, emo]) => {
     const n = data.filter(r => r.category === c).length;
     const b = document.createElement("button");
     b.className = "chip cat"; b.style.setProperty("--c", hex); b.setAttribute("aria-pressed","false");
-    b.innerHTML = `<span class="dot"></span>${esc(c)} <span style="opacity:.6">${n}</span>`;
+    b.innerHTML = `<span class="emo">${emo}</span>${esc(c)} <span style="opacity:.6">${n}</span>`;
     b.onclick = () => { toggle(state.cats, c); b.setAttribute("aria-pressed", state.cats.has(c)); render(true); };
     $("cats").appendChild(b);
   });
@@ -195,7 +197,7 @@
     $("hood").innerHTML = `<option value="">All neighborhoods</option>` +
       Object.keys(counts).sort().map(v => `<option value="${esc(v)}">${esc(v)} (${counts[v]})</option>`).join("");
   })();
-  $("legend").innerHTML = CATEGORIES.map(([c,hex]) => `<div><span class="dot" style="--c:${hex}"></span>${esc(c)}</div>`).join("") +
+  $("legend").innerHTML = CATEGORIES.map(([c,hex,emo]) => `<div><span class="dot" style="--c:${hex}"></span>${emo} ${esc(c)}</div>`).join("") +
     `<div style="margin-top:2px;color:#6f6a62">★ = JP favorite</div>`;
 
   $("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(true); };
