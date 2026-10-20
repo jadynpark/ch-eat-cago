@@ -22,7 +22,7 @@ const RESTAURANTS = [
     "lastVisited": "",
     "notes": [
       "Amazing ambience; the rooftop bar is extremely pretty",
-      "Must-try: crispy short rib hummus, smoked salmon bread & jerusalem bagel"
+      "Must-try: crispy short rib hummus, smoked salmon bread & Jerusalem bagel"
     ],
     "address": "302 N Green St",
     "lat": 41.88736,
@@ -48,7 +48,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "The chicken kebab was meh, pretty good overall!"
+      "The chicken kebab was meh, but pretty good overall!"
     ],
     "address": "74 W Illinois St",
     "lat": 41.89094,
@@ -74,7 +74,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Could go everyday for the Medjool dates. Don't get the focaccia… I regret it every time"
+      "Could go every day for the Medjool dates. Don't get the focaccia… I regret it every time"
     ],
     "address": "615 W Randolph St",
     "lat": 41.88461,
@@ -100,7 +100,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Peruvian! All around pretty good"
+      "Peruvian! Pretty good all around"
     ],
     "address": "118 W Grand Ave",
     "lat": 41.89149,
@@ -152,7 +152,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Far from downtown chi, but really good polish food! Get the family dinner if you can"
+      "Far from downtown Chi, but really good Polish food! Get the family dinner if you can"
     ],
     "address": "3030 N Milwaukee Ave",
     "lat": 41.9367,
@@ -205,7 +205,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "V cute and cozy vibe! Their fried onions are good, all the entrees are very solid"
+      "V cute and cozy vibe! Their fried onions are good, and all the entrées are very solid"
     ],
     "address": "4518 N Lincoln Ave",
     "lat": 41.9638,
@@ -258,7 +258,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Another one of my favorites! Good dish overall"
+      "Another one of my favorites! Good dishes all around"
     ],
     "address": "809 W Randolph St",
     "lat": 41.88461,
@@ -284,8 +284,8 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Must take pics here! Check out the furniture store (Restoration Hardware) it's connected to",
-      "The food itself is ok. Decent lobster roll. Prettier for brunch than dinner"
+      "Must take pics here! Check out the furniture store it's connected to (Restoration Hardware)",
+      "The food itself is OK. Decent lobster roll. Prettier for brunch than dinner"
     ],
     "address": "1300 N Dearborn St",
     "lat": 41.90541,
@@ -312,7 +312,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Bomb steak; mashed potatoes go well with the steak"
+      "Bomb steak; the mashed potatoes go really well with it"
     ],
     "address": "218 W Kinzie St",
     "lat": 41.88913,
@@ -338,7 +338,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Pretty good italian! Nothing out of the ordinary"
+      "Pretty good Italian! Nothing out of the ordinary"
     ],
     "address": "59 W Hubbard St",
     "lat": 41.88968,
@@ -420,7 +420,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "The restaurant's right next to the lake so the view is amazing",
+      "The restaurant's right next to the lake, so the view is amazing",
       "Excellent food, service, and wine pairing",
       "Major con: $$$$$$$$. Expect to spend $200/person. Extremely special occasions only."
     ],
@@ -448,7 +448,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Used to be a Chicago staple, it's meh personally but worth checking out ig"
+      "Used to be a Chicago staple. Personally I think it's meh, but worth checking out ig"
     ],
     "address": "444 N Michigan Ave",
     "lat": 41.8907,
@@ -474,8 +474,8 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "You can use the wine bar right next to the restaurant while on the waitlist!",
-      "Amazing view, obviously (on 95th floor). Secure the window seats."
+      "You can use the wine bar right next to the restaurant while you're on the waitlist!",
+      "Amazing view, obviously (it's on the 95th floor). Snag a window seat."
     ],
     "address": "875 N Michigan Ave (95th fl)",
     "lat": 41.89885,
@@ -498,7 +498,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Typical southern/midwest cuisine? Not amazing, but try the chicken sandwich on the brunch menu"
+      "Typical Southern/Midwestern food? Not amazing, but try the chicken sandwich on the brunch menu"
     ],
     "address": "951 W Fulton Market",
     "lat": 41.88733,
@@ -521,7 +521,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Quality burger. Fries with garlic aioli is fantastic"
+      "Quality burger. The fries with garlic aioli are fantastic"
     ],
     "address": "800 W Randolph St (also Small Cheval)",
     "lat": 41.88454,
@@ -602,7 +602,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "$$$$$$$$$. But amazing service. Food was overall a little too savory for me."
+      "$$$$$$$$$. But amazing service. The food was a little too savory for me overall."
     ],
     "address": "177 N Ada St",
     "lat": 41.8851,
@@ -629,7 +629,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Korean/Mexican American fusion? Hip place with good ambiance. Really good amuse-bouche lol."
+      "Korean/Mexican/American fusion? Hip place with good ambiance. Really good amuse-bouche lol."
     ],
     "address": "2300 N Lincoln Park W (moved from Pilsen in 2025)",
     "lat": 41.9233,
@@ -655,7 +655,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Food is honestly just meh. But super cute vibe, their patio is insta-worthy if you're into that stuff"
+      "The food is honestly just meh. But super cute vibe; their patio is insta-worthy if you're into that stuff"
     ],
     "address": "317 N Clark St (Wolf Point)",
     "lat": 41.8871,
@@ -681,7 +681,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Michelin 2 star. Jaw-dropping food. Performative but not super experimental. Legit good food."
+      "Michelin 2-star. Jaw-dropping food. Performative but not super experimental, just legit good food."
     ],
     "address": "661 W Walnut St",
     "lat": 41.88642,
@@ -708,7 +708,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Fondue dinner. Super romantic atmosphere! There's an old man who plays the guitar in the corner."
+      "Fondue dinner. Super romantic atmosphere! There's an old man who plays guitar in the corner."
     ],
     "address": "340 W Armitage Ave",
     "lat": 41.91807,
@@ -734,8 +734,8 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "All around good steak & Italian.",
-      "Must get the Baked Alaska for dessert. It's an ice cream cake covered with marshmallows and they torch the marshmallows in front of you. It's pretty amazing."
+      "Good steak & Italian all around.",
+      "Must get the Baked Alaska for dessert. It's an ice cream cake covered in marshmallow, and they torch it right in front of you. It's pretty amazing."
     ],
     "address": "66 W Kinzie St",
     "lat": 41.88913,
@@ -761,8 +761,8 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "\"European\" inspired bistro. Good service and the restaurant is v cute.",
-      "I'll give 3 out of 5 stars because of hygiene though.. (there were crumbs on the seats & the table and the plates were a bit soiled…)"
+      "\"European\"-inspired bistro. Good service, and the restaurant is v cute.",
+      "I'd give it 3 out of 5 stars because of hygiene, though (there were crumbs on the seats and the table, and the plates were a bit dirty…)"
     ],
     "address": "4337 N Lincoln Ave",
     "lat": 41.9605,
@@ -788,8 +788,8 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Cute brunch place; feels slightly fratty and the food is OK.",
-      "I'd rather go to the 3 Arts Club Cafe for this kind of vibe, but still feels like a good place to hang with friends"
+      "Cute brunch place; feels slightly fratty, and the food is OK.",
+      "I'd rather go to the 3 Arts Club Cafe for this kind of vibe, but it's still a good place to hang out with friends"
     ],
     "address": "1954 N Halsted St",
     "lat": 41.91724,
@@ -841,9 +841,9 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "(Do not recommend) I went during restaurant week, so I might be a bit biased",
-      "Aba's crispy brussels sprout was better",
-      "The mushroom gnocchi is not as heavy & creamy as other gnocchis (which I liked), but it was also a tad too watery"
+      "(Do not recommend) I went during Restaurant Week, so I might be a bit biased",
+      "Aba's crispy brussels sprouts are better",
+      "The mushroom gnocchi isn't as heavy & creamy as other gnocchi (which I liked), but it was also a tad too watery"
     ],
     "address": "1349 W Cornelia Ave",
     "lat": 41.9452,
@@ -869,7 +869,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "OK, go during christmas season because the steak on their christmas menu is AMAZAZING",
+      "OK, go during the Christmas season, because the steak on their Christmas menu is AMAZAZING",
       "Other dishes are solid too"
     ],
     "address": "2201 S Michigan Ave",
@@ -896,7 +896,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Prob my favorite restaurant out of the ones I visited recently"
+      "Prob my favorite of the restaurants I've been to recently"
     ],
     "address": "932 W Fulton Market",
     "lat": 41.88733,
@@ -949,7 +949,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Personally prefer their steak over Prime & Provisions, they treat you like you're important"
+      "Personally, I prefer their steak over Prime & Provisions. They treat you like you're important"
     ],
     "address": "8 W Maple St",
     "lat": 41.90053,
@@ -1027,7 +1027,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "The BEST Japanese comfort food in chi (imo).",
+      "The BEST Japanese comfort food in Chi (imo).",
       "Try the sukiyaki if you can! (they tend to run out pretty quickly)"
     ],
     "address": "668 N Wells St",
@@ -1209,7 +1209,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Solid Okonomiyaki"
+      "Solid okonomiyaki"
     ],
     "address": "950 W Monroe St",
     "lat": 41.8806,
@@ -1289,7 +1289,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "2023",
     "notes": [
-      "All-you-can-eat hotpot!! You can choose any toppings you want from a conveyor belt like a sushi bar",
+      "All-you-can-eat hotpot!! You pick any toppings you want off a conveyor belt, like at a sushi bar",
       "2023 update: it's not as good as it used to be, but still worth a try"
     ],
     "address": "800 N State St",
@@ -1343,9 +1343,9 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "They don't accept reservations so expect to stand in line during lunch/dinner time",
+      "They don't take reservations, so expect to wait in line at lunch/dinner time",
       "The place is pretty small and can get crowded",
-      "The only Korean restaurant that is actually pretty close to downtown Chi. Well there's also… Perilla"
+      "The only Korean restaurant that's actually pretty close to downtown Chi. Well, there's also… Perilla"
     ],
     "address": "4200 N Lincoln Ave",
     "lat": 41.9585,
@@ -1479,7 +1479,7 @@ const RESTAURANTS = [
     "lastVisited": "2026",
     "notes": [
       "Korean-inspired American cuisine; one of my favorite restaurants in Chi!!",
-      "2026 update: Hmm… It's still good but feels a bit overpriced now"
+      "2026 update: Hmm… it's still good, but feels a bit overpriced now"
     ],
     "address": "1460 W Chicago Ave",
     "lat": 41.89637,
@@ -1610,7 +1610,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Nice to walk in"
+      "Good for walk-ins"
     ],
     "address": "1329 S Michigan Ave",
     "lat": 41.86494,
@@ -1631,7 +1631,7 @@ const RESTAURANTS = [
     "ratings": null,
     "lastVisited": "",
     "notes": [
-      "Haven't tried, on my list (heard good things)"
+      "Haven't tried it yet, but it's on my list (heard good things)"
     ],
     "address": "2907 N Lincoln Ave",
     "lat": 41.9343,
@@ -1709,8 +1709,8 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "Strawberries & Cream flavor is amazing.",
-      "It's open until 10pm and is perfect for summer night dates. Get a cup of gelato, grab a seat by the river."
+      "The Strawberries & Cream flavor is amazing.",
+      "It's open until 10pm, perfect for summer night dates. Get a cup of gelato and grab a seat by the river."
     ],
     "address": "151 W Riverwalk S",
     "lat": 41.8876,
@@ -1737,7 +1737,7 @@ const RESTAURANTS = [
     "lastVisited": "",
     "notes": [
       "Ice cream sandwich w/ glazed donuts. So good!!",
-      "But go early because they run out of ice cream sandwiches pretty quickly."
+      "But go early, because they run out of ice cream sandwiches pretty quickly."
     ],
     "address": "68 W Hubbard St",
     "lat": 41.88968,
@@ -1764,7 +1764,7 @@ const RESTAURANTS = [
     "lastVisited": "",
     "notes": [
       "There's also a restaurant, but the cafe is walk-in only. Cute interior design.",
-      "Amazing cake & pastries"
+      "Amazing cakes & pastries"
     ],
     "address": "224 N Michigan Ave",
     "lat": 41.8862,
@@ -1819,7 +1819,7 @@ const RESTAURANTS = [
     "lastVisited": "",
     "notes": [
       "A smoll ice cream shop with desserts and sundaes (highly rec!!).",
-      "The decorations are fun to watch (such an eye candy--pun intended) and the portion is yuggeee"
+      "The decorations are fun to look at (such eye candy, pun intended), and the portions are yuggeee"
     ],
     "address": "1960 N Western Ave",
     "lat": 41.91735,
@@ -1845,7 +1845,7 @@ const RESTAURANTS = [
     },
     "lastVisited": "",
     "notes": [
-      "It's good but the ice cream melts really quickly so you basically end up just drinking the ice cream"
+      "It's good, but the ice cream melts really quickly, so you basically end up drinking it"
     ],
     "address": "2618 N Clark St",
     "lat": 41.929,
