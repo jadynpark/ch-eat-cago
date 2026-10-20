@@ -155,6 +155,7 @@
 (function(){
   // ================= config =================
   const API = (typeof SHEET_API === "string" && SHEET_API.trim()) || "";
+  const COMMENTS_ON = false;   // friend comments are off (JP-only editing via the Google Sheet)
   const CATEGORIES = [
     ["American",                   "#c8442f", "🍔"],
     ["Italian & European",         "#3a6bb0", "🍝"],
@@ -260,13 +261,13 @@
       <div class="actions"><button class="btn" type="submit">Post</button><span class="cmsg"></span></div>
     </form>`;
   const friendsHtml = r => {
-    if (!API) return "";
+    if (!API || !COMMENTS_ON) return "";
     const list = commentsFor(r);
     return `<div class="fc">${list.length ? `<div class="fc-h">💬 Friends say (${list.length})</div>${list.map(commentItem).join("")}` : ""}
       <button class="link add-c" type="button">＋ ${list.length ? "Add yours" : "Leave a comment"}</button>${formHtml(r.name, false)}</div>`;
   };
   const tipHtml = r => {
-    const fc = commentsFor(r);
+    const fc = COMMENTS_ON ? commentsFor(r) : [];
     return `<h4>${esc(r.name)} ${badges(r)}</h4>
       <div class="info">${infoLine(r)}${r.overall!=null?` · ★ ${r.overall.toFixed(1)}`:""}<br>${esc(r.address || "")}</div>
       ${ratingsHtml(r)}${notesHtml(r)}${reserveHtml(r)}
@@ -292,7 +293,7 @@
   });
   $("legend").innerHTML = CATEGORIES.map(([c,hex,emo]) => `<div><span class="dot" style="--c:${hex}"></span>${emo} ${esc(c)}</div>`).join("") +
     `<div style="margin-top:2px;color:#6f6a62">★ = JP favorite · ◯ = want to go</div>`;
-  if (API) $("tab-friends").hidden = false;
+  if (API && COMMENTS_ON) $("tab-friends").hidden = false;
 
   function refreshControls(){
     CATEGORIES.forEach(([c]) => { catBtns[c].querySelector(".cnt").textContent = data.filter(r => r.category === c).length; });
@@ -499,12 +500,12 @@
       if (!Array.isArray(live.restaurants) || !live.restaurants.length) throw new Error("empty");
       store.set(CACHE_KEY, live);
       dataRaw = live.restaurants;
-      setData(live.restaurants, live.comments || []);
+      setData(live.restaurants, COMMENTS_ON ? (live.comments || []) : []);
     } catch (err) { console.warn("Live data unavailable, using saved copy.", err); }
   }
   const cached = API ? store.get(CACHE_KEY) : null;
   if (cached && Array.isArray(cached.restaurants) && cached.restaurants.length){
-    dataRaw = cached.restaurants; setData(cached.restaurants, cached.comments || []);
+    dataRaw = cached.restaurants; setData(cached.restaurants, COMMENTS_ON ? (cached.comments || []) : []);
   } else setData(dataRaw, []);
   loadLive();
 })();

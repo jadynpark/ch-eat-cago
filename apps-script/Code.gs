@@ -3,7 +3,6 @@
  *
  * Tabs:
  *   Restaurants: your list. Edit any cell and the site picks it up within ~30 seconds.
- *   Comments: what friends post from the site. Delete a row, or put an "x" in "hide", to remove one.
  *
  * Setup: see README.md → "Connect the Google Sheet".
  * If you change THIS code later: Deploy → Manage deployments → ✏️ → Version: New version → Deploy.
@@ -11,13 +10,11 @@
 
 const SOURCE_URL = 'https://jadynpark.github.io/ch-eat-cago/restaurants.js';
 const TAB_R = 'Restaurants';
-const TAB_C = 'Comments';
 const CACHE_SECONDS = 30;
 
 const HEADERS = ['name', 'status', 'tag', 'category', 'type', 'neighborhood', 'price',
   'food', 'value', 'vibe', 'service', 'last_visited', 'notes', 'address', 'lat', 'lng',
   'reserve_url', 'reserve_via', 'reserve_note'];
-const C_HEADERS = ['timestamp', 'restaurant', 'name', 'comment', 'hide'];
 
 const CATEGORIES = ['American', 'Italian & European', 'Mediterranean & Latin', 'Japanese',
   'Chinese, Korean & SE Asian', 'Dessert & Bars'];
@@ -80,15 +77,8 @@ function setup() {
   sh.getRange(2, 13, n, 1).setWrap(true);
   sh.getRange(2, 1, n, HEADERS.length).setVerticalAlignment('top');
 
-  let c = ss.getSheetByName(TAB_C) || ss.insertSheet(TAB_C);
-  if (c.getLastRow() === 0) {
-    c.getRange(1, 1, 1, C_HEADERS.length).setValues([C_HEADERS]).setFontWeight('bold').setBackground('#f3ede4');
-    c.setFrozenRows(1);
-    c.setColumnWidth(4, 420);
-  }
-
   const blank = ss.getSheetByName('Sheet1');
-  if (blank && blank.getLastRow() === 0 && ss.getSheets().length > 2) ss.deleteSheet(blank);
+  if (blank && blank.getLastRow() === 0 && ss.getSheets().length > 1) ss.deleteSheet(blank);
 
   Logger.log('Imported ' + rows.length + ' restaurants. Next: Deploy → New deployment → Web app.');
 }
@@ -100,37 +90,9 @@ function doGet() {
   const cache = CacheService.getScriptCache();
   const hit = cache.get('payload');
   if (hit) return json_(hit);
-  const payload = JSON.stringify({ restaurants: readRestaurants_(), comments: readComments_(), updated: new Date().toISOString() });
+  const payload = JSON.stringify({ restaurants: readRestaurants_(), updated: new Date().toISOString() });
   if (payload.length < 95000) cache.put('payload', payload, CACHE_SECONDS);
   return json_(payload);
-}
-
-/* ------------------------------------------------------------------ */
-/* Friends post comments here (POST).                                  */
-/* ------------------------------------------------------------------ */
-function doPost(e) {
-  let d;
-  try { d = JSON.parse(e.postData.contents); } catch (err) { return json_({ ok: false, error: 'Bad request' }); }
-  if (d.website) return json_({ ok: true });                       // spam-bot honeypot
-
-  const restaurant = clean_(d.restaurant, 100);
-  const name = clean_(d.name, 40) || 'Anonymous';
-  const comment = clean_(d.comment, 1000);
-  if (!restaurant || !comment) return json_({ ok: false, error: 'Please add a comment.' });
-
-  const cache = CacheService.getScriptCache();
-  const recent = Number(cache.get('posts') || 0);
-  if (recent > 30) return json_({ ok: false, error: 'Lots of comments right now. Try again in a few minutes.' });
-  cache.put('posts', String(recent + 1), 600);
-
-  const lock = LockService.getScriptLock();
-  lock.waitLock(10000);
-  try {
-    const sh = SpreadsheetApp.getActive().getSheetByName(TAB_C);
-    sh.appendRow([new Date(), safe_(restaurant), safe_(name), safe_(comment), '']);
-  } finally { lock.releaseLock(); }
-  cache.remove('payload');
-  return json_({ ok: true });
 }
 
 /* ------------------------------------------------------------------ */
@@ -197,17 +159,6 @@ function readRestaurants_() {
   return out;
 }
 
-function readComments_() {
-  const sh = SpreadsheetApp.getActive().getSheetByName(TAB_C);
-  if (!sh || sh.getLastRow() < 2) return [];
-  const values = sh.getRange(2, 1, sh.getLastRow() - 1, C_HEADERS.length).getValues();
-  return values
-    .filter(function (r) { return r[3] && !String(r[4]).trim(); })
-    .map(function (r) {
-      return { date: r[0] instanceof Date ? r[0].toISOString() : String(r[0]), restaurant: String(r[1]), name: String(r[2]), comment: String(r[3]) };
-    });
-}
-
 function num_(x) {
   if (typeof x === 'number') return x;
   const s = String(x).trim();
@@ -215,8 +166,6 @@ function num_(x) {
   const f = parseFloat(s);
   return isNaN(f) ? null : f;
 }
-function clean_(s, max) { return String(s || '').replace(/[\u0000-\u0008\u000B-\u001F]/g, '').trim().slice(0, max); }
-function safe_(s) { return /^[=+\-@]/.test(s) ? "'" + s : s; }   // never let a comment become a formula
 function json_(o) {
   return ContentService.createTextOutput(typeof o === 'string' ? o : JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
 }

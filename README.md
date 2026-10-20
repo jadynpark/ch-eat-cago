@@ -2,7 +2,7 @@
 
 JP's interactive Chicago restaurant map → **https://jadynpark.github.io/ch-eat-cago/**
 
-The list lives in a **Google Sheet**: edit a cell and the site updates. Friends can comment on any spot or suggest new ones, and their comments land in the same Sheet.
+The list lives in a private **Google Sheet** that only JP can edit. Edit a cell and the site updates. Visitors can only view.
 
 ---
 
@@ -13,7 +13,7 @@ The list lives in a **Google Sheet**: edit a cell and the site updates. Friends 
 3. In the Sheet, open **Extensions → Apps Script**. Delete the sample code, paste in everything from [`apps-script/Code.gs`](apps-script/Code.gs), and press **⌘S**.
 4. In the toolbar's function dropdown, choose **`setup`** and click **▶ Run**.
    Google will ask for permission: **Review permissions** → pick your account → *"Google hasn't verified this app"* → **Advanced** → **Go to … (unsafe)** → **Allow**. (It's your own script, so that warning is expected.)
-   Back in the Sheet, you'll now have a **Restaurants** tab with all your spots and an empty **Comments** tab.
+   Back in the Sheet, you'll now have a **Restaurants** tab with all your spots.
 5. In Apps Script, click **Deploy → New deployment** → ⚙️ → **Web app**:
    - *Execute as:* **Me**
    - *Who has access:* **Anyone**
@@ -22,7 +22,7 @@ The list lives in a **Google Sheet**: edit a cell and the site updates. Friends 
    ```js
    const SHEET_API = "https://script.google.com/macros/s/AKfycb.../exec";
    ```
-   About a minute later the site reads from your Sheet, and a **💬 Friends** tab appears.
+   About a minute later the site reads from your Sheet.
 
 ## Updating your list (in the Sheet, works in the Google Sheets phone app too)
 
@@ -38,12 +38,11 @@ The list lives in a **Google Sheet**: edit a cell and the site updates. Friends 
 
 Changes show up within ~30 seconds (refresh the page).
 
-## Friend comments
+## Privacy
 
-- Each card has **＋ Leave a comment**. The **💬 Friends** tab has a **Suggest a spot** form for places not on the list.
-- No login needed. Every comment is added as a row in the **Comments** tab.
-- To remove one: delete the row, or type `x` in its `hide` column.
-- Comments are matched by restaurant name, so if you rename a spot in the Sheet, its old comments move to "Places friends recommend."
+- The Sheet stays private: sharing is off, and only you can edit it.
+- *Who has access: Anyone* only lets the website **read** the Restaurants tab through the script. Nobody can write to it or open the Sheet itself.
+- Visitor comments are turned off (`COMMENTS_ON = false` in `index.html`, and the script has no way to accept posts).
 
 ## Good to know
 
