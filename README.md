@@ -1,52 +1,53 @@
 # Ch-eat-cago 🍕
 
-JP's interactive Chicago restaurant map.
+JP's interactive Chicago restaurant map → **https://jadynpark.github.io/ch-eat-cago/**
 
-## Put it on GitHub Pages (about 5 minutes)
+The list lives in a **Google Sheet**: edit a cell and the site updates. Friends can comment on any spot or suggest new ones, and their comments land in the same Sheet.
 
-**Option A: in the browser, no terminal needed**
+---
 
-1. Go to https://github.com/new and create a **public** repo. Name it something like `ch-eat-cago`.
-2. On the new repo page, click **"uploading an existing file"**, drag in `index.html`, `restaurants.js`, and `README.md`, then click **Commit changes**.
-3. Go to **Settings → Pages**. Under "Build and deployment", set Source = **Deploy from a branch**, Branch = **main** / **(root)**, then click **Save**.
-4. After about a minute the site will be live at **https://jadynpark.github.io/ch-eat-cago/**
+## Connect the Google Sheet (one time, ~10 min)
 
-> If you'd rather have it at `https://jadynpark.github.io/`, name the repo `jadynpark.github.io` instead.
+1. **Push this repo first** (`git add . && git commit -m "..." && git push`), because the setup script imports your list from the live site.
+2. Go to **https://sheets.new** and name the new sheet something like *Ch-eat-cago*.
+3. In the Sheet, open **Extensions → Apps Script**. Delete the sample code, paste in everything from [`apps-script/Code.gs`](apps-script/Code.gs), and press **⌘S**.
+4. In the toolbar's function dropdown, choose **`setup`** and click **▶ Run**.
+   Google will ask for permission: **Review permissions** → pick your account → *"Google hasn't verified this app"* → **Advanced** → **Go to … (unsafe)** → **Allow**. (It's your own script, so that warning is expected.)
+   Back in the Sheet, you'll now have a **Restaurants** tab with all your spots and an empty **Comments** tab.
+5. In Apps Script, click **Deploy → New deployment** → ⚙️ → **Web app**:
+   - *Execute as:* **Me**
+   - *Who has access:* **Anyone**
+   Click **Deploy** and copy the **Web app URL** (it ends in `/exec`).
+6. On GitHub, open `config.js`, click ✏️, paste the URL between the quotes, and commit:
+   ```js
+   const SHEET_API = "https://script.google.com/macros/s/AKfycb.../exec";
+   ```
+   About a minute later the site reads from your Sheet, and a **💬 Friends** tab appears.
 
-**Option B: terminal**
+## Updating your list (in the Sheet, works in the Google Sheets phone app too)
 
-```bash
-cd chi-eats
-git init && git add . && git commit -m "Ch-eat-cago"
-git branch -M main
-git remote add origin https://github.com/jadynpark/ch-eat-cago.git
-git push -u origin main
-```
-Then turn on Pages as in step 3 above.
+| To… | Do this |
+|---|---|
+| Change a review | Edit `food` / `value` / `vibe` / `service` (0–5, halves OK) or `notes` |
+| Add bullet points | Put each bullet on its own line in the `notes` cell (**⌥ Option + Enter** for a new line) |
+| Log a visit | Type the year or month in `last_visited`, e.g. `2025` or `Oct 2025` |
+| Add a want-to-go | New row → `status` = **Want to go**, plus name, category, address |
+| Add a new spot | New row with at least `name`, `status`, `category`, `address`. The pin location (`lat`/`lng`) fills in automatically the next time the site loads. |
+| Mark a favorite / skip | `tag` = **Fave** or **Skip** |
+| Mark closed | `status` = **Closed** (hidden by default) |
 
-## Updating the list
+Changes show up within ~30 seconds (refresh the page).
 
-Everything lives in `restaurants.js`. To add a spot, copy an existing entry and edit it:
+## Friend comments
 
-```js
-{
-  "name": "New Place",
-  "category": "Japanese",          // American | Italian & European | Mediterranean & Latin | Japanese | Chinese, Korean & SE Asian | Dessert & Bars
-  "type": "Ramen",                 // specific cuisine shown on the card
-  "neighborhood": "Logan Square",
-  "price": 2,                      // 1–4  →  $ to $$$$
-  "ratings": {"food": 4.5, "value": 4, "vibe": 5, "service": 4}, // 0–5, halves OK; null = not rated
-  "reserve": {"url": "https://www.opentable.com/r/...", "via": "OpenTable"}, // via: OpenTable | Resy | Tock | SevenRooms | Website | Phone | Walk-in (optional "note")
-  "lat": 41.9231, "lng": -87.7093, // in Google Maps, right-click the spot and click the numbers to copy them
-  "address": "123 N Somewhere Ave",
-  "notes": ["First comment", "Second comment"],
-  "tags": ["fave"]                 // optional: fave, skip, wishlist, closed, maybe-closed
-}
-```
+- Each card has **＋ Leave a comment**. The **💬 Friends** tab has a **Suggest a spot** form for places not on the list.
+- No login needed. Every comment is added as a row in the **Comments** tab.
+- To remove one: delete the row, or type `x` in its `hide` column.
+- Comments are matched by restaurant name, so if you rename a spot in the Sheet, its old comments move to "Places friends recommend."
 
-Commit the change on GitHub (the pencil icon edits the file in your browser) and the site updates within about a minute.
+## Good to know
 
-## Notes
-
-- Map: MapLibre GL + OpenFreeMap vector tiles, © OpenStreetMap contributors (free, no API key needed).
-- Prices, neighborhoods, and star ratings started as drafts guessed from my comments. Reservation links were found via web search in Oct 2026. Change any you disagree with.
+- `restaurants.js` is now just a **backup** that the site uses if the Sheet can't be reached. It isn't updated automatically from the Sheet.
+- If you ever change `Code.gs`: **Deploy → Manage deployments → ✏️ → Version: New version → Deploy** (the URL stays the same).
+- Map: MapLibre GL + OpenFreeMap vector tiles, © OpenStreetMap contributors (free, no API key).
+- Prices, neighborhoods, and star ratings started as drafts guessed from my comments. Reservation links were found via web search in Oct 2026.
