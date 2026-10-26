@@ -19,7 +19,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "Amazing ambience; the rooftop bar is extremely pretty",
       "Must-try: crispy short rib hummus, smoked salmon bread & Jerusalem bagel"
@@ -44,9 +44,9 @@ const RESTAURANTS = [
       "food": 3.5,
       "value": 4,
       "vibe": 4,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "The chicken kebab was meh, but pretty good overall!"
     ],
@@ -61,7 +61,7 @@ const RESTAURANTS = [
   {
     "name": "Avec",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Mediterranean & Latin",
     "type": "Mediterranean",
     "neighborhood": "West Loop",
@@ -70,9 +70,9 @@ const RESTAURANTS = [
       "food": 4.5,
       "value": 4,
       "vibe": 4,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Could go every day for the Medjool dates. Don't get the focaccia… I regret it every time"
     ],
@@ -96,9 +96,9 @@ const RESTAURANTS = [
       "food": 4,
       "value": 3.5,
       "vibe": 4,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Peruvian! Pretty good all around"
     ],
@@ -122,9 +122,9 @@ const RESTAURANTS = [
       "food": 4,
       "value": 3.5,
       "vibe": 4.5,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Authentic Mediterranean"
     ],
@@ -148,9 +148,9 @@ const RESTAURANTS = [
       "food": 4.5,
       "value": 5,
       "vibe": 3,
-      "service": 4
+      "service": 2.5
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "Far from downtown Chi, but really good Polish food! Get the family dinner if you can"
     ],
@@ -176,7 +176,7 @@ const RESTAURANTS = [
       "vibe": 2,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Take-out only!! Best burritos ever, my death row meal (and I don't even like burritos). The only con is that it's in Evanston."
     ],
@@ -201,9 +201,9 @@ const RESTAURANTS = [
       "food": 4,
       "value": 4,
       "vibe": 5,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "V cute and cozy vibe! Their fried onions are good, and all the entrées are very solid"
     ],
@@ -218,7 +218,7 @@ const RESTAURANTS = [
   {
     "name": "Pequod's",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Italian & European",
     "type": "Pizza",
     "neighborhood": "Lincoln Park",
@@ -227,9 +227,9 @@ const RESTAURANTS = [
       "food": 5,
       "value": 5,
       "vibe": 3,
-      "service": 3
+      "service": 2.5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "The best deep dish pizza in the world. DO NOT GO TO GIORDANO'S OR LOU'S. THEY ARE A SCAM.",
       "Don't forget to get extra sauce & cheese"
@@ -245,20 +245,20 @@ const RESTAURANTS = [
   {
     "name": "Girl & the Goat",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "American",
     "type": "American",
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
       "food": 4.5,
-      "value": 4,
+      "value": 3.5,
       "vibe": 4,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
-      "Another one of my favorites! Good dishes all around"
+      "Another one of my favorites! Good dishes all around."
     ],
     "address": "809 W Randolph St",
     "lat": 41.88461,
@@ -280,9 +280,9 @@ const RESTAURANTS = [
       "food": 3,
       "value": 3,
       "vibe": 5,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Must take pics here! Check out the furniture store it's connected to (Restoration Hardware)",
       "The food itself is OK. Decent lobster roll. Prettier for brunch than dinner"
@@ -310,7 +310,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Bomb steak; the mashed potatoes go really well with it"
     ],
@@ -336,7 +336,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Pretty good Italian! Nothing out of the ordinary"
     ],
@@ -359,10 +359,10 @@ const RESTAURANTS = [
     "ratings": {
       "food": 4,
       "value": 4.5,
-      "vibe": 5,
-      "service": 4
+      "vibe": 4.5,
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Sister restaurant to Ciccio Mio; the vibe is pretty similar",
       "6 out of 5 stars for the ambiance & truffle mozz sticks",
@@ -387,10 +387,10 @@ const RESTAURANTS = [
     "ratings": {
       "food": 4,
       "value": 4,
-      "vibe": 5,
-      "service": 4
+      "vibe": 4.5,
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Sister restaurant to Gilt Bar; the vibe is pretty similar",
       "6 out of 5 stars for the ambiance & truffle mozz sticks"
@@ -418,7 +418,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 5
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "The restaurant's right next to the lake, so the view is amazing",
       "Excellent food, service, and wine pairing",
@@ -444,9 +444,9 @@ const RESTAURANTS = [
       "food": 3,
       "value": 3,
       "vibe": 3,
-      "service": 3
+      "service": 2.5
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "Used to be a Chicago staple. Personally I think it's meh, but worth checking out ig"
     ],
@@ -470,9 +470,9 @@ const RESTAURANTS = [
       "food": 3.5,
       "value": 2.5,
       "vibe": 5,
-      "service": 4
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2020",
     "notes": [
       "You can use the wine bar right next to the restaurant while you're on the waitlist!",
       "Amazing view, obviously (it's on the 95th floor). Snag a window seat."
@@ -494,9 +494,9 @@ const RESTAURANTS = [
       "food": 3,
       "value": 3,
       "vibe": 3.5,
-      "service": 3.5
+      "service": 2
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "Typical Southern/Midwestern food? Not amazing, but try the chicken sandwich on the brunch menu"
     ],
@@ -519,9 +519,10 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
-      "Quality burger. The fries with garlic aioli are fantastic"
+      "Quality burger. Personally it’s a bit too much for me with the fried egg and everything. Jonathan thinks it’s the best burger in the world, though.",
+      "The fries with garlic aioli are fantastic"
     ],
     "address": "800 W Randolph St (also Small Cheval)",
     "lat": 41.88454,
@@ -546,7 +547,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Pretty typical American food"
     ],
@@ -572,7 +573,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "GREAT atmosphere",
       "BOMBASS pizza crust"
@@ -600,9 +601,10 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
-      "$$$$$$$$$. But amazing service. The food was a little too savory for me overall."
+      "$$$$$$$$$. But amazing service. The food was a little too savory for me overall.",
+      "2026 update: Huge upgrade since it got its third Michelin star. I heard the head chef spent some time in Japan, and I think that really took things to another level. IT’S SO GOOD NOW."
     ],
     "address": "177 N Ada St",
     "lat": 41.8851,
@@ -627,7 +629,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Korean/Mexican/American fusion? Hip place with good ambiance. Really good amuse-bouche lol."
     ],
@@ -653,7 +655,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "The food is honestly just meh. But super cute vibe; their patio is insta-worthy if you're into that stuff"
     ],
@@ -679,7 +681,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 5
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Michelin 2-star. Jaw-dropping food. Performative but not super experimental, just legit good food."
     ],
@@ -706,7 +708,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "Fondue dinner. Super romantic atmosphere! There's an old man who plays guitar in the corner."
     ],
@@ -732,7 +734,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Good steak & Italian all around.",
       "Must get the Baked Alaska for dessert. It's an ice cream cake covered in marshmallow, and they torch it right in front of you. It's pretty amazing."
@@ -759,7 +761,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "\"European\"-inspired bistro. Good service, and the restaurant is v cute.",
       "I'd give it 3 out of 5 stars because of hygiene, though (there were crumbs on the seats and the table, and the plates were a bit dirty…)"
@@ -786,7 +788,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Cute brunch place; feels slightly fratty, and the food is OK.",
       "I'd rather go to the 3 Arts Club Cafe for this kind of vibe, but it's still a good place to hang out with friends"
@@ -802,7 +804,7 @@ const RESTAURANTS = [
   {
     "name": "Sepia",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "American",
     "type": "Fine Dining",
     "neighborhood": "West Loop",
@@ -813,7 +815,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "OMG so good; decent price for a Michelin restaurant"
     ],
@@ -839,7 +841,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "(Do not recommend) I went during Restaurant Week, so I might be a bit biased",
       "Aba's crispy brussels sprouts are better",
@@ -867,7 +869,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "OK, go during the Christmas season, because the steak on their Christmas menu is AMAZAZING",
       "Other dishes are solid too"
@@ -894,7 +896,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Prob my favorite of the restaurants I've been to recently"
     ],
@@ -921,7 +923,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Nothing too memorable, overall pretty decent"
     ],
@@ -947,7 +949,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 5
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Personally, I prefer their steak over Prime & Provisions. They treat you like you're important"
     ],
@@ -973,7 +975,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "They collaborate with local Chicago artists for their menu! Really cool dining experience"
     ],
@@ -999,7 +1001,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "Vietnamese, cute vibe"
     ],
@@ -1020,12 +1022,12 @@ const RESTAURANTS = [
     "neighborhood": "River North",
     "price": 2,
     "ratings": {
-      "food": 5,
+      "food": 4.5,
       "value": 4.5,
       "vibe": 3.5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "The BEST Japanese comfort food in Chi (imo).",
       "Try the sukiyaki if you can! (they tend to run out pretty quickly)"
@@ -1053,7 +1055,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2020",
     "notes": [
       "Ramen in the dark"
     ],
@@ -1080,7 +1082,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Asian fusion~"
     ],
@@ -1106,7 +1108,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "Asian fusion~"
     ],
@@ -1132,7 +1134,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Outdoor seating along the river"
     ],
@@ -1147,7 +1149,7 @@ const RESTAURANTS = [
   {
     "name": "Momotaro",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Japanese",
     "type": "Japanese",
     "neighborhood": "West Loop",
@@ -1158,7 +1160,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Highly rec Momotaro if I had to choose one (vs. Arami). Probably the best sushi in the Chicago area. $$$$ though"
     ],
@@ -1184,7 +1186,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2021",
     "notes": [
       "Good sushi, but if I had to choose one I'd go to Momotaro"
     ],
@@ -1207,7 +1209,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Solid okonomiyaki"
     ],
@@ -1228,12 +1230,12 @@ const RESTAURANTS = [
     "neighborhood": "Chinatown",
     "price": 2,
     "ratings": {
-      "food": 4,
+      "food": 3.5,
       "value": 4.5,
       "vibe": 3,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Pretty good Chinese restaurant, multiple locations around Chicago!"
     ],
@@ -1255,12 +1257,12 @@ const RESTAURANTS = [
     "neighborhood": "Chinatown",
     "price": 2,
     "ratings": {
-      "food": 4,
+      "food": 3,
       "value": 4.5,
       "vibe": 3,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Pretty good Chinese restaurant, multiple locations around Chicago!"
     ],
@@ -1276,7 +1278,7 @@ const RESTAURANTS = [
   {
     "name": "Friends Station",
     "status": "maybe-closed",
-    "tag": "",
+    "tag": "skip",
     "category": "Chinese, Korean & SE Asian",
     "type": "Hot Pot",
     "neighborhood": "River North",
@@ -1290,7 +1292,7 @@ const RESTAURANTS = [
     "lastVisited": "2023",
     "notes": [
       "All-you-can-eat hotpot!! You pick any toppings you want off a conveyor belt, like at a sushi bar",
-      "2023 update: it's not as good as it used to be, but still worth a try"
+      "2023 update: it's not as good as it used to be, prob won't go again"
     ],
     "address": "800 N State St",
     "lat": 41.89637,
@@ -1314,7 +1316,7 @@ const RESTAURANTS = [
       "vibe": 3.5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "An actual rotary sushi bar",
       "It's dang good!"
@@ -1341,7 +1343,7 @@ const RESTAURANTS = [
       "vibe": 2.5,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "They don't take reservations, so expect to wait in line at lunch/dinner time",
       "The place is pretty small and can get crowded",
@@ -1366,13 +1368,13 @@ const RESTAURANTS = [
     "price": 3,
     "ratings": {
       "food": 4,
-      "value": 3.5,
-      "vibe": 4,
+      "value": 2,
+      "vibe": 3,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
-      "Doesn't really feel like authentic Korean to me. Their KBBQ is still great though!"
+      "Doesn't really feel like authentic Korean to me. Incredibly overpriced. Their KBBQ is still great though!"
     ],
     "address": "401 N Milwaukee Ave",
     "lat": 41.88936,
@@ -1396,7 +1398,7 @@ const RESTAURANTS = [
       "vibe": 2.5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Can't say I'm a fan of the ambience (dark, loud music) but their food is solid",
       "They also have karaoke"
@@ -1423,7 +1425,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "PEKING DUCK"
     ],
@@ -1449,7 +1451,7 @@ const RESTAURANTS = [
       "vibe": 2.5,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "MORE DUCK"
     ],
@@ -1465,7 +1467,7 @@ const RESTAURANTS = [
   {
     "name": "Jeong",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Chinese, Korean & SE Asian",
     "type": "Korean",
     "neighborhood": "West Town",
@@ -1503,7 +1505,7 @@ const RESTAURANTS = [
       "vibe": 3,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "Lettuce cups."
     ],
@@ -1527,9 +1529,9 @@ const RESTAURANTS = [
       "food": 2.5,
       "value": 3,
       "vibe": 3,
-      "service": 3
+      "service": 2
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Ramen-san style chain ramen. Meh."
     ],
@@ -1555,7 +1557,7 @@ const RESTAURANTS = [
       "vibe": 4.5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "High-end Japanese restaurant"
     ],
@@ -1576,12 +1578,12 @@ const RESTAURANTS = [
     "neighborhood": "West Loop",
     "price": 4,
     "ratings": {
-      "food": 5,
+      "food": 4,
       "value": 3.5,
       "vibe": 4.5,
       "service": 5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "Really good omakase! I'm not a huge fan of seafood in general, but I was able to eat everything here"
     ],
@@ -1603,12 +1605,12 @@ const RESTAURANTS = [
     "neighborhood": "South Loop",
     "price": 2,
     "ratings": {
-      "food": 3.5,
+      "food": 3,
       "value": 4,
-      "vibe": 3,
+      "vibe": 2.5,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "Good for walk-ins"
     ],
@@ -1650,12 +1652,12 @@ const RESTAURANTS = [
     "neighborhood": "West Loop",
     "price": 3,
     "ratings": {
-      "food": 5,
+      "food": 4,
       "value": 3.5,
       "vibe": 4.5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2026",
     "notes": [
       "TRUFFLE MILK TOAST. Don't share, get 1 (or 2) per person."
     ],
@@ -1676,12 +1678,12 @@ const RESTAURANTS = [
     "neighborhood": "West Loop",
     "price": 1,
     "ratings": {
-      "food": 4,
-      "value": 4,
-      "vibe": 3,
-      "service": 3.5
+      "food": 3,
+      "value": 3,
+      "vibe": 2.5,
+      "service": 2
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Quality gelato"
     ],
@@ -1696,18 +1698,18 @@ const RESTAURANTS = [
   {
     "name": "Sweet Home Gelato",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Dessert & Bars",
     "type": "Dessert",
     "neighborhood": "River North",
     "price": 1,
     "ratings": {
-      "food": 5,
+      "food": 3,
       "value": 4,
-      "vibe": 5,
-      "service": 4
+      "vibe": 4,
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "The Strawberries & Cream flavor is amazing.",
       "It's open until 10pm, perfect for summer night dates. Get a cup of gelato and grab a seat by the river."
@@ -1723,18 +1725,18 @@ const RESTAURANTS = [
   {
     "name": "Firecakes",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Dessert & Bars",
     "type": "Dessert",
     "neighborhood": "River North",
     "price": 1,
     "ratings": {
-      "food": 5,
-      "value": 4.5,
-      "vibe": 3,
+      "food": 3,
+      "value": 3,
+      "vibe": 2,
       "service": 3.5
     },
-    "lastVisited": "",
+    "lastVisited": "2025",
     "notes": [
       "Ice cream sandwich w/ glazed donuts. So good!!",
       "But go early, because they run out of ice cream sandwiches pretty quickly."
@@ -1756,12 +1758,12 @@ const RESTAURANTS = [
     "neighborhood": "Loop",
     "price": 2,
     "ratings": {
-      "food": 4.5,
-      "value": 3.5,
-      "vibe": 5,
-      "service": 4
+      "food": 3,
+      "value": 2.5,
+      "vibe": 3,
+      "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2022",
     "notes": [
       "There's also a restaurant, but the cafe is walk-in only. Cute interior design.",
       "Amazing cakes & pastries"
@@ -1789,7 +1791,7 @@ const RESTAURANTS = [
       "vibe": 5,
       "service": 4.5
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Only go if you want to get absolutely hammered. Highly rec for a goooood time."
     ],
@@ -1805,21 +1807,21 @@ const RESTAURANTS = [
   {
     "name": "Margie's Candies",
     "status": "been",
-    "tag": "fave",
+    "tag": "",
     "category": "Dessert & Bars",
     "type": "Dessert",
     "neighborhood": "Bucktown",
     "price": 1,
     "ratings": {
-      "food": 4.5,
-      "value": 5,
-      "vibe": 5,
+      "food": 3.5,
+      "value": 3.5,
+      "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "A smoll ice cream shop with desserts and sundaes (highly rec!!).",
-      "The decorations are fun to look at (such eye candy, pun intended), and the portions are yuggeee"
+      "The decorations are fun to look at (such eye candy--pun intended), and the portions are yuggeee"
     ],
     "address": "1960 N Western Ave",
     "lat": 41.91735,
@@ -1840,10 +1842,10 @@ const RESTAURANTS = [
     "ratings": {
       "food": 3,
       "value": 3,
-      "vibe": 3,
+      "vibe": 2.5,
       "service": 3
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "It's good, but the ice cream melts really quickly, so you basically end up drinking it"
     ],
@@ -1869,7 +1871,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2023",
     "notes": [
       "Overpriced and not worth the hype imo."
     ],
@@ -1896,7 +1898,7 @@ const RESTAURANTS = [
       "vibe": 4,
       "service": 4
     },
-    "lastVisited": "",
+    "lastVisited": "2024",
     "notes": [
       "Overpriced and not worth the hype imo."
     ],
@@ -1906,6 +1908,352 @@ const RESTAURANTS = [
     "reserve": {
       "url": "https://www.opentable.com/r/the-palm-court-chicago",
       "via": "OpenTable"
+    }
+  },
+  {
+    "name": "Monteverde",
+    "status": "been",
+    "tag": "fave",
+    "category": "Italian & European",
+    "type": "Italian",
+    "neighborhood": "West Loop",
+    "price": 3,
+    "ratings": {
+      "food": 4.5,
+      "value": 4,
+      "vibe": 4,
+      "service": 3.5
+    },
+    "lastVisited": "2026",
+    "notes": [
+      "One of my favorite Italian restaurants!"
+    ],
+    "address": "1020 W Madison St",
+    "lat": 41.8818,
+    "lng": -87.65306,
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/monteverde-restaurant-and-pastificio",
+      "via": "Resy",
+      "note": "Opens 30 days out; bar is walk-in"
+    }
+  },
+  {
+    "name": "Qing Xiang Yuan Dumplings",
+    "status": "been",
+    "tag": "",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Chinese",
+    "neighborhood": "Chinatown",
+    "price": 2,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 3,
+      "service": 3
+    },
+    "lastVisited": "2026",
+    "notes": [
+      "Best dumplings in Chicago!!"
+    ],
+    "address": "2002 S Wentworth Ave, Ste 103",
+    "lat": 41.85517,
+    "lng": -87.63199,
+    "reserve": {
+      "url": "https://qxydumpling.com/",
+      "via": "Walk-in",
+      "note": "Walk-in only · BYOB"
+    }
+  },
+  {
+    "name": "Canton Regio",
+    "status": "want",
+    "tag": "",
+    "category": "Mediterranean & Latin",
+    "type": "Mexican",
+    "neighborhood": "Pilsen",
+    "price": 2,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "1510 W 18th St",
+    "lat": 41.858,
+    "lng": -87.66429,
+    "reserve": {
+      "url": "https://canton-regio.weeblyte.com/",
+      "via": "Phone",
+      "note": "Call 312-733-3045 · cash only, BYOB"
+    }
+  },
+  {
+    "name": "Mott St",
+    "status": "want",
+    "tag": "",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Asian-American",
+    "neighborhood": "West Town",
+    "price": 2,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "1401 N Ashland Ave",
+    "lat": 41.90717,
+    "lng": -87.66731,
+    "reserve": {
+      "url": "https://www.opentable.com/mott-street",
+      "via": "OpenTable",
+      "note": "Bar & patio are walk-in"
+    }
+  },
+  {
+    "name": "Omakase Shoji & Izakaya",
+    "status": "want",
+    "tag": "",
+    "category": "Japanese",
+    "type": "Omakase",
+    "neighborhood": "West Town",
+    "price": 4,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "1641 W Chicago Ave",
+    "lat": 41.8958,
+    "lng": -87.66894,
+    "reserve": {
+      "url": "https://resy.com/cities/chicago-il/venues/omakase-shoji",
+      "via": "Resy",
+      "note": "10-seat counter; izakaya is walk-in"
+    }
+  },
+  {
+    "name": "Hoosier Mama Pie Company",
+    "status": "want",
+    "tag": "",
+    "category": "Dessert & Bars",
+    "type": "Pie",
+    "neighborhood": "West Town",
+    "price": 1,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "1618 1/2 W Chicago Ave",
+    "lat": 41.89637,
+    "lng": -87.66694,
+    "reserve": {
+      "url": "https://www.hoosiermamapie.com/chicago.html",
+      "via": "Walk-in",
+      "note": "Counter service"
+    }
+  },
+  {
+    "name": "Provaré",
+    "status": "want",
+    "tag": "",
+    "category": "Italian & European",
+    "type": "Italian-Creole",
+    "neighborhood": "West Town",
+    "price": 3,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "1523 W Chicago Ave",
+    "lat": 41.89589,
+    "lng": -87.66586,
+    "reserve": {
+      "url": "https://www.exploretock.com/provarechicago/",
+      "via": "Tock",
+      "note": "21+ · 75-min seatings"
+    }
+  },
+  {
+    "name": "JJ Thai Street Food",
+    "status": "want",
+    "tag": "",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Thai",
+    "neighborhood": "Ukrainian Village",
+    "price": 1,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "1715 W Chicago Ave",
+    "lat": 41.89583,
+    "lng": -87.67041,
+    "reserve": {
+      "url": "https://www.jjthaistreetfood.com/",
+      "via": "Walk-in",
+      "note": "Counter service · closed Tue"
+    }
+  },
+  {
+    "name": "Milly's Pizza In The Pan",
+    "status": "want",
+    "tag": "",
+    "category": "Italian & European",
+    "type": "Pizza",
+    "neighborhood": "West Town",
+    "price": 2,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "925 N Ashland Ave",
+    "lat": 41.89871,
+    "lng": -87.66703,
+    "reserve": {
+      "url": "https://www.millyspizzachi.com/",
+      "via": "Walk-in",
+      "note": "Limited pies daily; order ahead online"
+    }
+  },
+  {
+    "name": "Black Dog Gelato",
+    "status": "want",
+    "tag": "",
+    "category": "Dessert & Bars",
+    "type": "Gelato",
+    "neighborhood": "Ukrainian Village",
+    "price": 1,
+    "ratings": null,
+    "lastVisited": "",
+    "notes": [],
+    "address": "859 N Damen Ave",
+    "lat": 41.89765,
+    "lng": -87.67695,
+    "reserve": {
+      "url": "https://blackdoggelato.com/",
+      "via": "Walk-in"
+    }
+  },
+  {
+    "name": "Daeji Dough Company",
+    "status": "been",
+    "tag": "",
+    "category": "Dessert & Bars",
+    "type": "Cafe",
+    "neighborhood": "Lakeview",
+    "price": 3,
+    "ratings": {
+      "food": 3,
+      "value": 2.5,
+      "vibe": 3,
+      "service": 3
+    },
+    "lastVisited": "2026",
+    "notes": [
+      "Korean bakery inspired cafe"
+    ],
+    "address": "1360 W Belmont Ave",
+    "lat": 41.93999,
+    "lng": -87.66354,
+    "reserve": {
+      "url": "https://daejidoughco.com/",
+      "via": "Walk-in",
+      "note": "Expect a line · closed Tue"
+    }
+  },
+  {
+    "name": "Elske",
+    "status": "been",
+    "tag": "",
+    "category": "American",
+    "type": "American",
+    "neighborhood": "West Loop",
+    "price": 3,
+    "ratings": {
+      "food": 4,
+      "value": 4,
+      "vibe": 4.5,
+      "service": 4
+    },
+    "lastVisited": "2026",
+    "notes": [
+      "Such a cute vibe; I was too full to really enjoy the steak but every dish was really good"
+    ],
+    "address": "1350 W Randolph St",
+    "lat": 41.88447,
+    "lng": -87.66092,
+    "reserve": {
+      "url": "https://www.exploretock.com/elske-chicago/",
+      "via": "Tock"
+    }
+  },
+  {
+    "name": "Robert's Pizza and Dough Company",
+    "status": "been",
+    "tag": "",
+    "category": "Italian & European",
+    "type": "Pizza",
+    "neighborhood": "Streeterville",
+    "price": 2,
+    "ratings": {
+      "food": 3.5,
+      "value": 3,
+      "vibe": 3,
+      "service": 3
+    },
+    "lastVisited": "2026",
+    "notes": [
+      "Decent Neapolitan pizza"
+    ],
+    "address": "465 N McClurg Ct",
+    "lat": 41.89048,
+    "lng": -87.61641,
+    "reserve": {
+      "url": "https://www.opentable.com/r/roberts-pizza-and-dough-company-chicago",
+      "via": "OpenTable"
+    }
+  },
+  {
+    "name": "Bang Bang Pie & Biscuits",
+    "status": "been",
+    "tag": "fave",
+    "category": "American",
+    "type": "Pie",
+    "neighborhood": "Logan Square",
+    "price": 2,
+    "ratings": {
+      "food": 4,
+      "value": 4.5,
+      "vibe": 4,
+      "service": 4
+    },
+    "lastVisited": "2025",
+    "notes": [
+      "I swear it's worth the trip"
+    ],
+    "address": "2051 N California Ave",
+    "lat": 41.9191,
+    "lng": -87.69701,
+    "reserve": {
+      "url": "https://bangbangbiscuits.square.site/",
+      "via": "Walk-in",
+      "note": "Or order ahead for pickup"
+    }
+  },
+  {
+    "name": "Kasama",
+    "status": "been",
+    "tag": "",
+    "category": "Chinese, Korean & SE Asian",
+    "type": "Filipino",
+    "neighborhood": "Ukrainian Village",
+    "price": 2,
+    "ratings": {
+      "food": 4.5,
+      "value": 4,
+      "vibe": 4,
+      "service": 3.5
+    },
+    "lastVisited": "2026",
+    "notes": [
+      "Get there 30 minutes before it opens. You'll still end up waiting in line, but at least you actually get to get in!!"
+    ],
+    "address": "1001 N Winchester Ave",
+    "lat": 41.89969,
+    "lng": -87.67557,
+    "reserve": {
+      "url": "https://www.exploretock.com/kasama/",
+      "via": "Tock",
+      "note": "Dinner opens 6 weeks out at noon; daytime is walk-in"
     }
   }
 ];

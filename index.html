@@ -491,7 +491,7 @@
   });
 
   // ================= load =================
-  let dataRaw = window.RESTAURANTS || [];
+  let dataRaw = (typeof RESTAURANTS !== "undefined" && Array.isArray(RESTAURANTS)) ? RESTAURANTS : [];
   async function loadLive(){
     if (!API) return;
     try {
