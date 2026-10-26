@@ -94,6 +94,30 @@
   .tip ul.notes{margin:0 0 8px;padding-left:16px;font-size:13px;line-height:1.4}
   .tip .fc-item{font-size:12.5px}
   .legend{position:absolute;right:10px;bottom:28px;background:rgba(255,255,255,.95);padding:8px 10px;border-radius:8px;font-size:12px;box-shadow:0 1px 6px rgba(0,0,0,.15);line-height:1.7;z-index:2;pointer-events:none}
+  /* ---------- 🟣 fig theme (delete this block to go back to the plain look) ---------- */
+  :root{ --bg:#f7efea; --panel:#fffaf7; --ink:#2f1b2b; --muted:#7d6573; --line:#eddfe2; --soft:#fbeff1;
+         --accent:#b8336a; --fig:#5b2650; --fig-dark:#431b3b; --flesh:#d9577f; --seed:#d9a440; --leaf:#6f8c3c; }
+  aside{border-top:4px solid var(--fig)}
+  h1{color:var(--fig);display:flex;align-items:center;gap:8px}
+  h1 .t{color:var(--fig)}
+  h1 .t span{color:var(--flesh)}
+  h1 .logo{width:30px;height:30px;flex:none}
+  .tabs{background:#f3e5ea}
+  .tab[aria-selected=true]{color:var(--fig)}
+  .chip[aria-pressed=true]{background:var(--fig);border-color:var(--fig)}
+  input[type=search]:focus,select:focus,textarea:focus,input[type=text]:focus{outline:2px solid color-mix(in srgb,var(--flesh) 45%,transparent);outline-offset:0;border-color:var(--flesh)}
+  .btn{background:var(--fig);border-color:var(--fig)}
+  .btn:hover{background:var(--fig-dark)}
+  .btn.ghost{background:var(--panel)}
+  .btn.ghost:hover{border-color:var(--fig)}
+  .stars i{color:var(--seed)}
+  .overall{color:var(--fig)}
+  .b-fave{background:#f8e7c4;color:#7a4f00}
+  .b-want{background:#efe2ee;color:var(--fig)}
+  .card:hover,.card.active{background:var(--soft);border-color:#efd3db}
+  .legend{background:color-mix(in srgb,var(--panel) 95%,transparent)}
+  .maplibregl-popup.tip .maplibregl-popup-content{border-top:3px solid var(--flesh);background:var(--panel)}
+  .maplibregl-popup-anchor-bottom .maplibregl-popup-tip{border-top-color:var(--panel)}
   @media (max-width:800px){
     .app{grid-template-columns:1fr;grid-template-rows:44vh 1fr;height:100dvh}
     main{order:-1}
@@ -108,7 +132,13 @@
 <div class="app">
   <aside>
     <header>
-      <h1>Ch-<span>eat</span>-cago</h1>
+      <h1><svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 6c-1 3-3 4.5-5.5 6.5C7 15.3 6 18.5 6.5 21.5 7.4 26.5 11.5 29 16 29s8.6-2.5 9.5-7.5c.5-3-.5-6.2-4-9-2.5-2-4.5-3.5-5.5-6.5z" fill="#5b2650"/>
+          <path d="M16 13c-2.6 2-4.6 4.4-4.6 7.6 0 3 2 5.2 4.6 5.2s4.6-2.2 4.6-5.2c0-3.2-2-5.6-4.6-7.6z" fill="#d9577f"/>
+          <g fill="#f3d27a"><circle cx="14.5" cy="20" r=".8"/><circle cx="17.4" cy="19" r=".8"/><circle cx="16" cy="22.6" r=".8"/><circle cx="13.9" cy="23.2" r=".7"/><circle cx="18.1" cy="22" r=".7"/></g>
+          <path d="M16 6.5c0-2 .6-3.4 1.8-4.3" stroke="#6f8c3c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M17.2 3.6c2.2-1.6 4.8-1.4 6.6.2-2.1 1.5-4.6 1.6-6.6-.2z" fill="#6f8c3c"/>
+        </svg><span class="t">Ch-<span>eat</span>-cago</span></h1>
       <p class="sub">JP's very honest Chicago restaurant list. Hover a pin to read my take.</p>
     </header>
     <div class="filters">
