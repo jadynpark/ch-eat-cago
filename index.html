@@ -101,7 +101,6 @@
   h1{color:var(--fig);display:flex;align-items:center;gap:8px}
   h1 .t{color:var(--fig)}
   h1 .t span{color:var(--flesh)}
-  h1 .logo{width:30px;height:30px;flex:none}
   .tabs{background:#f3e5ea}
   .tab[aria-selected=true]{color:var(--fig)}
   .chip[aria-pressed=true]{background:var(--fig);border-color:var(--fig)}
@@ -118,6 +117,25 @@
   .legend{background:color-mix(in srgb,var(--panel) 95%,transparent)}
   .maplibregl-popup.tip .maplibregl-popup-content{border-top:3px solid var(--flesh);background:var(--panel)}
   .maplibregl-popup-anchor-bottom .maplibregl-popup-tip{border-top-color:var(--panel)}
+  /* ---------- 🌿 dark-green sidebar (delete this block to go back to the light sidebar) ---------- */
+  aside{--panel:#1e3a2b; --ink:#f5eee4; --muted:#b4c4b3; --line:#335140; --soft:#284a37; --accent:#f39abb;
+        background:var(--panel);color:var(--ink);color-scheme:dark;border-right-color:#16291f}
+  aside h1 .t{color:var(--ink)}
+  aside h1 .t span{color:#f39abb}
+  aside input[type=search],aside input[type=text],aside select,aside textarea{background:#264535;color:var(--ink);border-color:var(--line)}
+  aside input::placeholder{color:#93a894}
+  aside .tabs{background:#16301f}
+  aside .tab[aria-selected=true]{background:var(--ink);color:var(--fig)}
+  aside .chip{background:transparent;color:var(--ink);border-color:var(--line)}
+  aside .chip[aria-pressed=true]{background:var(--fig);border-color:#8a4a7c;color:#fff}
+  aside .chip.cat[aria-pressed=true]{background:color-mix(in srgb,var(--c) 35%,#1e3a2b);border-color:var(--c);color:#fff}
+  aside .card:hover,aside .card.active{background:var(--soft);border-color:var(--line)}
+  aside .stars{color:#476552}
+  aside .overall{color:var(--seed)}
+  aside .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  aside .btn.ghost:hover{border-color:var(--ink)}
+  aside .filters{border-bottom-color:var(--line)}
+  aside .list::-webkit-scrollbar{width:10px} aside .list::-webkit-scrollbar-thumb{background:#335140;border-radius:8px}
   @media (max-width:800px){
     .app{grid-template-columns:1fr;grid-template-rows:44vh 1fr;height:100dvh}
     main{order:-1}
@@ -126,52 +144,80 @@
     .filters{padding:0 16px 10px}
     .legend{display:none}
   }
+  /* ---------- 🗺 layout: top bar + map + card strip ---------- */
+  .app{grid-template-columns:1fr;grid-template-rows:auto 1fr 250px;grid-template-areas:"top" "map" "strip";position:relative}
+  aside{display:contents}
+  .topbar{grid-area:top;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 18px;background:var(--panel);border-top:4px solid var(--fig);border-bottom:1px solid #16291f;z-index:5}
+  .topbar h1{font-size:24px;margin-right:4px}
+  .topbar .tabs{flex:none}
+  .topbar .tab{flex:none;padding:6px 12px}
+  .tb-controls{display:flex;gap:8px;align-items:center;flex:1;min-width:280px}
+  .tb-controls input[type=search]{flex:1;width:auto;min-width:120px}
+  .tb-controls select{flex:none;width:auto}
+  #fcount:not(:empty){background:var(--flesh);color:#fff;border-radius:999px;padding:0 6px;font-size:11px;margin-left:2px}
+  .topbar .count{color:var(--muted);font-size:13px;white-space:nowrap}
+  .drawer{position:absolute;z-index:20;left:18px;top:var(--topH,64px);width:min(560px,calc(100% - 36px));background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+  .drawer[hidden]{display:none}
+  .drawer .dlabel{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .drawer select{flex:none;width:auto}
+  main{grid-area:map}
+  .list{grid-area:strip;display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;padding:12px 18px;background:var(--panel);border-top:1px solid #16291f;scroll-snap-type:x proximity}
+  .list .card{flex:0 0 330px;scrollbar-width:thin;scrollbar-color:#3d5e4a transparent;height:100%;overflow-y:auto;margin:0;background:var(--soft);border:1px solid var(--line);border-radius:12px;scroll-snap-align:start}
+  .list .card:hover,.list .card.active{border-color:var(--flesh);background:#2e5541}
+  .list .empty{flex:1;align-self:center}
+  .list .card .ratings{gap:1px 10px}
+  .list .card .ratings .lbl{width:46px}
+  .list::-webkit-scrollbar{height:10px} .list::-webkit-scrollbar-thumb{background:#335140;border-radius:8px}
+  .legend{bottom:12px}
+  @media (max-width:800px){
+    .app{grid-template-rows:auto 1fr 220px;height:100dvh}
+    main{order:0}
+    .topbar{gap:8px;padding:8px 12px} .topbar h1{font-size:20px}
+    .tb-controls{min-width:100%}
+    .list .card{flex-basis:300px}
+  }
 </style>
 </head>
 <body>
 <div class="app">
   <aside>
-    <header>
-      <h1><svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16 6c-1 3-3 4.5-5.5 6.5C7 15.3 6 18.5 6.5 21.5 7.4 26.5 11.5 29 16 29s8.6-2.5 9.5-7.5c.5-3-.5-6.2-4-9-2.5-2-4.5-3.5-5.5-6.5z" fill="#5b2650"/>
-          <path d="M16 13c-2.6 2-4.6 4.4-4.6 7.6 0 3 2 5.2 4.6 5.2s4.6-2.2 4.6-5.2c0-3.2-2-5.6-4.6-7.6z" fill="#d9577f"/>
-          <g fill="#f3d27a"><circle cx="14.5" cy="20" r=".8"/><circle cx="17.4" cy="19" r=".8"/><circle cx="16" cy="22.6" r=".8"/><circle cx="13.9" cy="23.2" r=".7"/><circle cx="18.1" cy="22" r=".7"/></g>
-          <path d="M16 6.5c0-2 .6-3.4 1.8-4.3" stroke="#6f8c3c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <path d="M17.2 3.6c2.2-1.6 4.8-1.4 6.6.2-2.1 1.5-4.6 1.6-6.6-.2z" fill="#6f8c3c"/>
-        </svg><span class="t">Ch-<span>eat</span>-cago</span></h1>
-      <p class="sub">JP's very honest Chicago restaurant list. Hover a pin to read my take.</p>
-    </header>
-    <div class="filters">
+    <div class="topbar">
+      <h1><span class="t">Ch-<span>eat</span>-cago</span></h1>
       <div class="tabs" role="tablist" id="tabs">
         <button class="tab" role="tab" data-view="all" aria-selected="true">All <span class="n" id="n-all"></span></button>
         <button class="tab" role="tab" data-view="been" aria-selected="false">Been <span class="n" id="n-been"></span></button>
         <button class="tab" role="tab" data-view="want" aria-selected="false">Want to go <span class="n" id="n-want"></span></button>
         <button class="tab" role="tab" data-view="friends" aria-selected="false" id="tab-friends" hidden>💬 Friends <span class="n" id="n-friends"></span></button>
       </div>
-      <div id="filterControls" style="display:grid;gap:8px">
-        <input type="search" id="q" placeholder="Search names, dishes, comments…">
-        <div class="row" id="cats"></div>
-        <div class="row"><select id="hood" aria-label="Neighborhood"></select></div>
-        <div class="row" id="prices"></div>
-        <div class="row">
-          <button class="chip" id="faves" aria-pressed="false">★ Faves only</button>
-          <button class="chip" id="hideClosed" aria-pressed="true">Hide closed</button>
-          <select id="sort" aria-label="Sort" style="flex:1">
-            <option value="name">Sort: A–Z</option>
-            <option value="r_overall">Sort: ★ Overall</option>
-            <option value="r_food">Sort: ★ Food</option>
-            <option value="r_value">Sort: ★ Value</option>
-            <option value="r_vibe">Sort: ★ Vibe</option>
-            <option value="r_service">Sort: ★ Service</option>
-            <option value="visited">Sort: Recently visited</option>
-            <option value="cuisine">Sort: Cuisine</option>
-            <option value="neighborhood">Sort: Neighborhood</option>
-            <option value="priceAsc">Sort: Price ↑</option>
-            <option value="priceDesc">Sort: Price ↓</option>
-          </select>
-        </div>
+      <div id="filterControls" class="tb-controls">
+        <input type="search" id="q" placeholder="Search names, dishes, notes…">
+        <button class="chip" id="filterBtn" aria-expanded="false">Filters <span id="fcount"></span> ▾</button>
+        <select id="sort" aria-label="Sort">
+          <option value="name">Sort: A–Z</option>
+          <option value="r_overall">Sort: ★ Overall</option>
+          <option value="r_food">Sort: ★ Food</option>
+          <option value="r_value">Sort: ★ Value</option>
+          <option value="r_vibe">Sort: ★ Vibe</option>
+          <option value="r_service">Sort: ★ Service</option>
+          <option value="visited">Sort: Recently visited</option>
+          <option value="cuisine">Sort: Cuisine</option>
+          <option value="neighborhood">Sort: Neighborhood</option>
+          <option value="priceAsc">Sort: Price ↑</option>
+          <option value="priceDesc">Sort: Price ↓</option>
+        </select>
       </div>
-      <div class="meta-row"><span id="count"></span><button class="link" id="reset">Reset filters</button></div>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="drawer" id="drawer" hidden>
+      <div class="dlabel">Cuisine</div>
+      <div class="row" id="cats"></div>
+      <div class="dlabel">Neighborhood & price</div>
+      <div class="row"><select id="hood" aria-label="Neighborhood"></select><span id="prices" class="row"></span></div>
+      <div class="row" style="justify-content:space-between">
+        <span class="row"><button class="chip" id="faves" aria-pressed="false">★ Faves only</button>
+        <button class="chip" id="hideClosed" aria-pressed="true">Hide closed</button></span>
+        <button class="link" id="reset">Reset filters</button>
+      </div>
     </div>
     <div class="list" id="list"></div>
   </aside>
@@ -341,7 +387,7 @@
   document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
     state.view = t.dataset.view;
     document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === t));
-    $("filterControls").style.display = state.view === "friends" ? "none" : "grid";
+    $("filterControls").style.display = state.view === "friends" ? "none" : "";
     $("reset").style.visibility = state.view === "friends" ? "hidden" : "visible";
     closePopup(); render(true);
   });
@@ -414,7 +460,7 @@
       el.addEventListener("click", e => {
         e.stopPropagation(); pinnedId = r.id; showPopup(r.id);
         const c = document.querySelector(`.card[data-id="${r.id}"]`);
-        if (c){ c.scrollIntoView({behavior:"smooth", block:"center"}); flash(c); }
+        if (c){ c.scrollIntoView({behavior:"smooth", block:"nearest", inline:"center"}); flash(c); }
       });
       markers[r.id] = new maplibregl.Marker({element:el}).setLngLat([r.lng, r.lat]).addTo(map);
     });
@@ -443,6 +489,7 @@
 
   // ================= render =================
   function render(refit){
+    updateFilterCount();
     if (state.view === "friends") return renderFriends();
     const shown = data.filter(matches).sort(SORTS[state.sort]);
     const ids = new Set(shown.map(r => r.id));
@@ -477,6 +524,13 @@
         recent.map(c => `<div class="card static"><h3 style="font-size:14px">${esc(c.restaurant)}</h3>${commentItem(c)}</div>`).join("") : ""}
       ${!picks.length && !recent.length ? `<div class="empty">No comments yet. Be the first!</div>` : ""}`;
   }
+  // ---- filters drawer ----
+  const drawer = $("drawer"), fbtn = $("filterBtn");
+  const placeDrawer = () => document.documentElement.style.setProperty("--topH", (document.querySelector(".topbar").offsetHeight + 6) + "px");
+  fbtn.onclick = e => { e.stopPropagation(); drawer.hidden = !drawer.hidden; fbtn.setAttribute("aria-expanded", !drawer.hidden); placeDrawer(); };
+  document.addEventListener("click", e => { if (!drawer.hidden && !drawer.contains(e.target) && e.target !== fbtn) { drawer.hidden = true; fbtn.setAttribute("aria-expanded", false); } });
+  window.addEventListener("resize", placeDrawer);
+  function updateFilterCount(){ const n = state.cats.size + state.prices.size + (state.hood ? 1 : 0) + (state.faves ? 1 : 0) + (state.hideClosed ? 0 : 1); $("fcount").textContent = n || ""; }
   const anyFilter = () => state.q || state.cats.size || state.hood || state.prices.size || state.faves;
 
   // list interactions (event delegation)
